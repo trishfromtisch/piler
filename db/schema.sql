@@ -4,7 +4,8 @@ CREATE DATABASE piler;
 
 CREATE TABLE neighborhoods (
 id serial primary key,
-name varchar (255)
+name varchar(255),
+google_name varchar(255)
 );
 
 CREATE TABLE reports (
