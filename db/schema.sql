@@ -28,12 +28,12 @@ created_at timestamp
 );
 
 CREATE TABLE users (
-	id serial primary key,
-	name varchar(255),
-	email varchar(255),
-	subscribe boolean,
-	subscription_neighborhood_id integer,
-	picture text,
-	password varchar(15)
+id serial primary key,
+name varchar(255),
+email varchar(255),
+subscribe boolean,
+subscription_neighborhood_id integer,
+picture text,
+password varchar(15)
 );
 
