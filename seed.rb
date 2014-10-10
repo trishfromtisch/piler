@@ -1,248 +1,264 @@
 require_relative './lib/connection'
 
+Neighborhood.delete_all
+Report.delete_all
+User.delete_all
+Comment.delete_all
+
+
 #Neighborhood
-Neighborhood.create({
+the_bronx = Neighborhood.create({
 	name: "The Bronx",
 	google_name: "Bronx, NY"
 	})
 
-Neighborhood.create({
+queens = Neighborhood.create({
 	name: "Queens",
 	google_name: "Queens, NY"
 	})
 
-Neighborhood.create({
+staten_Island = Neighborhood.create({
 	name: "Staten Island",
 	google_name: "Staten Island, NY"
 	})
 
-Neighborhood.create({
+greenpoint = Neighborhood.create({
 	name: "Greenpoint",
 	google_name: "Greenpoint, Brooklyn"
 	})
 
-Neighborhood.create({
+bedford = Neighborhood.create({
 	name: "Bedford",
 	google_name: "Bedford, Brooklyn"
 	})
 
-Neighborhood.create({
+crown_heights = Neighborhood.create({
 	name: "Crown Heights",
 	google_name: "Crown Heights, Brooklyn"
 	})
 
-Neighborhood.create({
+sunset_park = Neighborhood.create({
 	name: "Sunset Park",
 	google_name: "Sunset Park, Brooklyn"
 	})
 
-Neighborhood.create({
+financial_district = Neighborhood.create({
 	name: "Finacial District",
 	google_name: "Wall Street, Manhattan, NY"
 	})
 
-Neighborhood.create({
+battery_park_city = Neighborhood.create({
 	name: "Battery Park City",
 	google_name: "Battery Park City, NY"
 	})
 
-Neighborhood.create({
+tribeca = Neighborhood.create({
 	name: "TriBeCa",
 	google_name: "TriBeCa, NY"
 	})
 
-Neighborhood.create({
+lower_east_side = Neighborhood.create({
 	name: "Lower East Side",
 	google_name: "Lower East Side, NY"
 	})
 
-Neighborhood.create({
+two_bridges = Neighborhood.create({
 	name: "Two Bridges",
 	google_name: "Two Bridges, NY"
 	})
 
-Neighborhood.create({
+soho = Neighborhood.create({
 	name: "SoHo",
 	google_name: "SoHo, NY"
 	})
 
-Neighborhood.create({
+noho = Neighborhood.create({
 	name: "NoHo",
 	google_name: "NoHo, NY"
 	})
 
-Neighborhood.create({
+west_village = Neighborhood.create({
 	name: "West Village",
 	google_name: "West Village, NY"
 	})
 
-Neighborhood.create({
+east_village = Neighborhood.create({
 	name: "East Village",
 	google_name: "East Village, NY"
 	})
 
-Neighborhood.create({
+chinatown = Neighborhood.create({
 	name: "Chinatown",
 	google_name: "Chinatown,NY"
 	})
 
-Neighborhood.create({
+chelsea = Neighborhood.create({
 	name: "Chelsea",
 	google_name: "Chelsea, NY"
 	})
 
-Neighborhood.create({
+midtown = Neighborhood.create({
 	name: "Midtown",
 	google_name: "Midtown, NY"
 	})
 
-Neighborhood.create({
+little_italy = Neighborhood.create({
 	name: "Little Italy",
 	google_name: "Little Italy, NY"
 	})
 
-Neighborhood.create({
+alphabet_city = Neighborhood.create({
 	name: "Alphabet City",
 	google_name: "Alphabet City, NY"
 	})
 
-Neighborhood.create({
+clinton = Neighborhood.create({
 	name: "Clinton",
 	google_name: "Clinton, NY"
 	})
 
-Neighborhood.create({
+gramercy_park = Neighborhood.create({
 	name: "Gramercy Park",
 	google_name: "Gramercy Park, NY"
 	})
 
-Neighborhood.create({
+kips_bay = Neighborhood.create({
 	name: "Kips Bay",
 	google_name: "Kips Bay, NY"
 	})
 
-Neighborhood.create({
+murray_hill = Neighborhood.create({
 	name: "Murray Hill",
 	google_name: "Murray Hill, NY"
 	})
 
-Neighborhood.create({
+peter_cooper_village = Neighborhood.create({
 	name: "Peter Cooper Village",
 	google_name: "Peter Cooper Village, NY"
 	})
 
-Neighborhood.create({
+stuyvesant_town = Neighborhood.create({
 	name: "Stuyvesant Town",
 	google_name: "Stuyvesant Town, NY"
 	})
 
-Neighborhood.create({
+sutton_place = Neighborhood.create({
 	name: "Sutton Place",
 	google_name: "Sutton Place, NY"
 	})
 
-Neighborhood.create({
+tudor_city = Neighborhood.create({
 	name: "Tudor City",
 	google_name: "Tudor City, NY"
 	})
 
-Neighborhood.create({
+turtle_bay = Neighborhood.create({
 	name: "Turtle Bay",
 	google_name: "Turtle Bay, NY"
 	})
 
-Neighborhood.create({
+waterside_plaza = Neighborhood.create({
 	name: "Waterside Plaza",
 	google_name: "Waterside Plaza, NY"
 	})
 
-Neighborhood.create({
+lincoln_square = Neighborhood.create({
 	name: "Lincoln Square",
 	google_name: "Lincoln Square, NY"
 	})
 
-Neighborhood.create({
+manhattan_valley = Neighborhood.create({
 	name: "Manhattan Valley",
 	google_name: "Manhattan Valley, NY"
 	})
 
-Neighborhood.create({
+upper_west_side = Neighborhood.create({
 	name: "Upper West Side",
 	google_name: "Upper West Side, NY"
 	})
 
-Neighborhood.create({
+lenox_hill = Neighborhood.create({
 	name: "Lenox Hill",
 	google_name: "Lenox Hill, NY"
 	})
 
-Neighborhood.create({
+roosvelt_island = Neighborhood.create({
 	name: "Roosevelt Island",
 	google_name: "Roosevelt Island,NY"
 	})
 
-Neighborhood.create({
+upper_east_side = Neighborhood.create({
 	name: "Upper East Side",
 	google_name: "Upper East Side, NY"
 	})
 
-Neighborhood.create({
+yorkville = Neighborhood.create({
 	name: "Yorkville",
 	google_name: "Yorkville, NY"
 	})
 
-Neighborhood.create({
+hamilton_heights = Neighborhood.create({
 	name: "Hamilton Heights",
 	google_name: "Hamilton Heights, NY"
 	})
 
-Neighborhood.create({
+manhattanville = Neighborhood.create({
 	name: "Manhattanville",
 	google_name: "Manhattanville, NY"
 	})
 
-Neighborhood.create({
+morningsise_heights = Neighborhood.create({
 	name: "Morningside Heights",
 	google_name: "Morningside Heights, NY"
 	})
 
-Neighborhood.create({
+harlem = Neighborhood.create({
 	name: "Harlem",
 	google_name: "Harlem, NY"
 	})
 
-Neighborhood.create({
+polo_grounds = Neighborhood.create({
 	name: "Polo Grounds",
 	google_name: "Polo Grounds, NY"
 	})
 
-Neighborhood.create({
+east_harlem = Neighborhood.create({
 	name: "East Harlem",
 	google_name: "East Harlem, NY"
 	})
 
-Neighborhood.create({
+randalls_island = Neighborhood.create({
 	name: "Randall’s Island",
 	google_name: "Randall’s Island, NY"
 	})
 
-Neighborhood.create({
+spanish_harlem = Neighborhood.create({
 	name: "Spanish Harlem",
 	google_name: "Spanish Harlem, NY"
 	})
 
-Neighborhood.create({
+inwood = Neighborhood.create({
 	name: "Inwood",
 	google_name: "Inwood, NY"
 	})
 
-Neighborhood.create({
+washington_heights = Neighborhood.create({
 	name: "Washington Heights",
 	google_name: "Washington Heights, NY"
 	})
 
 #User
+ralph = User.create( {name: "Ralph Kramden", email: "ralph@dmta.gov", subscribe: true, subscription_neighborhood_id: alphabet_city.id, password: "norton"} )
+
+frank = User.create( {name: "Frank Sinatra", email: "frankie@sinatra.com", subscribe: true, subscription_neighborhood_id: upper_east_side.id, password: "giancana"})
+
+pablo = User.create( {name: "Pablo Picasso", email: "imaginealamp@freeform.nyc", subscribe: false, password: "hemingway"})
+
+norm = User.create( {name: "Norman Mailer", email: "norman@hapers.com", subscribe: true, subscription_neighborhood_id: lower_east_side.id, password: "fortyfive"})
+
+joey = User.create( {name: "Joey Ramone", email: "joey@theramones.com", subscribe: true, subscription_neighborhood_id: queens.id, password: "beatonthebrat"})
 
 #Report
+
 
 #Comment
