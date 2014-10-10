@@ -1,4 +1,4 @@
-require_relative './lib/connection'
+require_relative './db/connection.rb'
 
 Neighborhood.delete_all
 Report.delete_all
@@ -259,6 +259,25 @@ norm = User.create( {name: "Norman Mailer", email: "norman@hapers.com", subscrib
 joey = User.create( {name: "Joey Ramone", email: "joey@theramones.com", subscribe: true, subscription_neighborhood_id: queens.id, password: "beatonthebrat"})
 
 #Report
+poop = Report.create({user_id: ralph.id, location: "1117 Lexington Ave #4, New York, NY", subscribe: true, votes: 15, picture: "http://www.washingtoncitypaper.com/blogs/citydesk/files/2014/02/horsepoop-1024x682.jpg", description: "Biggest dump I've ever seen. Might be human."})
 
+doodoo = Report.create({user_id: frank.id, location: "4001 Broadway, New York, NY", subscribe: false, votes: 2, picture: "http://s.hswstatic.com/gif/green-pet-poop0-1.jpg", description: "This is so nasty!"})
+
+caca = Report.create({user_id: pablo.id, location: "1559 2nd Ave, New York, NY", subscribe: true, votes: 0, picture: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTYmC2PRZGp4Qi-bAmbXrrzU7lDmoxf7LH1HzRmbIK6YOi-R6wq", description: "I swear it's the same dog that poops here ever night"})
+
+doody = Report.create({user_id: norm.id, location: "1889 Broadway, New York, NY 10023", subscribe: false, votes: 4, picture: "http://klagnwindy.podbean.com/mf/web/6ji2y9/Dog_poop.jpg", description: "This has been sitting here for a week!"})
+
+shih = Report.create({user_id: joey.id, location: "145 3rd Ave, New York, NY 10003", subscribe: true, votes: 0, picture: "http://2.bp.blogspot.com/-lVtKb3jROKw/Tdkaw0MiJyI/AAAAAAAAHbo/XWaOs90oJII/s1600/poop.png", description: "Almost stepped in this!"})
 
 #Comment
+
+poop_comment = Comment.create({user_id: frank.id, report_id: poop.id, content: "that's horse poop, stupid"})
+
+poop_comment2 = Comment.create({user_id: norm.id, report_id: poop.id, content: "lulz, dumbazz"})
+
+doodoo_comment = Comment.create({user_id: joey.id, report_id: doodoo.id, content: "Stepped in it! :-( "})
+
+caca_comment = Comment.create({user_id: ralph.id, report_id: caca.id, content: "are those marshmallows????"})
+
+shih_comment = Comment.create({user_id: norm.id, report_id: shih.id, content: "great pic! lulz"})
+

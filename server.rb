@@ -107,13 +107,13 @@ get "/users/:id/comments" do
 end
 
 #Neighborhoods routes
-get "/neighborhood" do
+get "/neighborhoods" do
 	content_type(:json)
 	neighborhoods = Neighborhood.all
 	neighborhoods.to_json
 end
 
-get "/neighborhood/:id/reports" do
+get "/neighborhoods/:id/reports" do
 	content_type(:json)
 	reports = Report.where( {neighborhood_id: params["id"]})
 	reports.to_json
