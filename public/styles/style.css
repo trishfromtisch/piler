@@ -1,29 +1,33 @@
 body{
 	text-align: center;
 }
-
+ 
 header{
 	height:200px;
 	width:100%;
 	background:blue;
 }
-
+ 
+ul {
+	list-style: none;
+}
+ 
 a {
 	color: black;
 	font-size: 24px;
 }
-
+ 
 div#piler{
 	font-size: 50px;
 }
-
+ 
 div#one.row{
 	height:150px;
 	width:100%;
 	background: rgba(255,255,255,0.8);
 	margin: 0;
 }
-
+ 
 div#two.row{
 	height:50px;
 	width:100%;
@@ -31,22 +35,33 @@ div#two.row{
 	margin: 0;
 	color: black;
 } 
-
+ 
 .sidebar{
+	padding: 3%;
 	width: 30%;
 	height: 500px;
 	float: left;
 	background: blue;
-}
-
-label{
 	color: white;
 }
-
+ 
+div#profile_pic {
+	height: 150px;
+	width: 150px;
+	background: black;
+}
+ 
+.sidebar li {
+	margin-bottom: 5%;
+}
+ 
+.sidebar button {
+	color: black;
+}
+ 
 .map{
 	width: 70%;
 	height: 500px;
 	float: right;
 	background: rgb(205,133,63);
 }
-
