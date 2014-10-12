@@ -1,3 +1,2 @@
-connection.rb
-.gitignore
-.DS_store
+~/dev/wdi/piler/db/connection.rb
+~/dev/wdi/piler/.gitignore
