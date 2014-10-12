@@ -1,4 +1,4 @@
-require_relative './db/connection.rb'
+require_relative './lib/connection.rb'
 
 Neighborhood.delete_all
 Report.delete_all
@@ -40,6 +40,31 @@ crown_heights = Neighborhood.create({
 sunset_park = Neighborhood.create({
 	name: "Sunset Park",
 	google_name: "Sunset Park, Brooklyn"
+	})
+
+williamsburg = Neighborhood.create({
+	name: "Williamsburg", 
+	google_name: "Williamsburg, Brooklyn"
+	})
+
+bushwick = Neighborhood.create({
+	name: "Bushwick",
+	google_name: "Bushwick, Brooklyn"
+	})
+
+downtown_brooklyn = Neighborhood.create({
+	name: "Downtown Brooklyn",
+	google_name: "Downtown Brooklyn, NY"
+	})
+
+brooklyn_heights = Neighborhood.create({
+	name: "Brooklyn Heights",
+	google_name: "Brooklyn Heights, Brooklyn NY"
+	})
+
+park_slope = Neighborhood.create({
+	name: "Park Slope",
+	google_name: "Park Slope, Brooklyn NY"
 	})
 
 financial_district = Neighborhood.create({
@@ -157,11 +182,6 @@ turtle_bay = Neighborhood.create({
 	google_name: "Turtle Bay, NY"
 	})
 
-waterside_plaza = Neighborhood.create({
-	name: "Waterside Plaza",
-	google_name: "Waterside Plaza, NY"
-	})
-
 lincoln_square = Neighborhood.create({
 	name: "Lincoln Square",
 	google_name: "Lincoln Square, NY"
@@ -217,11 +237,6 @@ harlem = Neighborhood.create({
 	google_name: "Harlem, NY"
 	})
 
-polo_grounds = Neighborhood.create({
-	name: "Polo Grounds",
-	google_name: "Polo Grounds, NY"
-	})
-
 east_harlem = Neighborhood.create({
 	name: "East Harlem",
 	google_name: "East Harlem, NY"
@@ -259,15 +274,15 @@ norm = User.create( {name: "Norman Mailer", email: "norman@hapers.com", subscrib
 joey = User.create( {name: "Joey Ramone", email: "joey@theramones.com", subscribe: true, subscription_neighborhood_id: queens.id, password: "beatonthebrat"})
 
 #Report
-poop = Report.create({user_id: ralph.id, location: "1117 Lexington Ave #4, New York, NY", subscribe: true, votes: 15, picture: "http://www.washingtoncitypaper.com/blogs/citydesk/files/2014/02/horsepoop-1024x682.jpg", description: "Biggest dump I've ever seen. Might be human."})
+poop = Report.create({user_id: ralph.id, location: "1117 Lexington Ave #4, New York, NY", neighborhood_id: upper_east_side.id, subscribe: true, votes: 15, picture: "http://www.washingtoncitypaper.com/blogs/citydesk/files/2014/02/horsepoop-1024x682.jpg", description: "Biggest dump I've ever seen. Might be human."})
 
-doodoo = Report.create({user_id: frank.id, location: "4001 Broadway, New York, NY", subscribe: false, votes: 2, picture: "http://s.hswstatic.com/gif/green-pet-poop0-1.jpg", description: "This is so nasty!"})
+doodoo = Report.create({user_id: frank.id, location: "4001 Broadway, New York, NY", neighborhood_id: washington_heights.id, subscribe: false, votes: 2, picture: "http://s.hswstatic.com/gif/green-pet-poop0-1.jpg", description: "This is so nasty!"})
 
-caca = Report.create({user_id: pablo.id, location: "1559 2nd Ave, New York, NY", subscribe: true, votes: 0, picture: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTYmC2PRZGp4Qi-bAmbXrrzU7lDmoxf7LH1HzRmbIK6YOi-R6wq", description: "I swear it's the same dog that poops here ever night"})
+caca = Report.create({user_id: pablo.id, location: "1559 2nd Ave, New York, NY", neighborhood_id: yorkville.id, subscribe: true, votes: 0, picture: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTYmC2PRZGp4Qi-bAmbXrrzU7lDmoxf7LH1HzRmbIK6YOi-R6wq", description: "I swear it's the same dog that poops here ever night"})
 
-doody = Report.create({user_id: norm.id, location: "1889 Broadway, New York, NY 10023", subscribe: false, votes: 4, picture: "http://klagnwindy.podbean.com/mf/web/6ji2y9/Dog_poop.jpg", description: "This has been sitting here for a week!"})
+doody = Report.create({user_id: norm.id, location: "1889 Broadway, New York, NY 10023", neighborhood_id: lincoln_square.id, subscribe: false, votes: 4, picture: "http://klagnwindy.podbean.com/mf/web/6ji2y9/Dog_poop.jpg", description: "This has been sitting here for a week!"})
 
-shih = Report.create({user_id: joey.id, location: "145 3rd Ave, New York, NY 10003", subscribe: true, votes: 0, picture: "http://2.bp.blogspot.com/-lVtKb3jROKw/Tdkaw0MiJyI/AAAAAAAAHbo/XWaOs90oJII/s1600/poop.png", description: "Almost stepped in this!"})
+shih = Report.create({user_id: joey.id, location: "145 3rd Ave, New York, NY 10003", neighborhood_id: stuyvesant_town.id, subscribe: true, votes: 0, picture: "http://2.bp.blogspot.com/-lVtKb3jROKw/Tdkaw0MiJyI/AAAAAAAAHbo/XWaOs90oJII/s1600/poop.png", description: "Almost stepped in this!"})
 
 #Comment
 
