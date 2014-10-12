@@ -1,11 +1,23 @@
-window.onload = function(){
-	$('a').click(function(){
-	debugger
-	
-	});
+function whichNeighborhood(){
+  //this is for the splash page where they pick the neighborhood
+  $.get("/neighborhoods", function(neighborhoods){
+    var innards = "<select name ='neighborhood' class='neighborhood'>"
+    for (var i = 0; i < neighborhoods.length; i ++){
+      innards += "<option value="+ neighborhoods[i].id+">" + neighborhoods[i].name + "</option>"
+      }
+    innards += "</select>"+"<button id='enter'>ENTER</button>"
+     $(".sidebar").html(innards)
+  })
+  RSS()
 
-	$('div#piler').click(function(){
-		debugger
-		console.log('clicked')
-	})
 }
+
+
+function RSS(){
+  $("#enter").click(function(event){
+    neighborhood = $("[name='neighborhood']").val()
+
+  })
+
+}
+

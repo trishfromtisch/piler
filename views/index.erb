@@ -24,16 +24,33 @@
 		</div>
 	</header>
 	<div class="sidebar">
-		<div id="profile_top"><div id="profile_pic"></div><div id="profile_detail"></div></div>
-		<div id="profile_bottom"></div>
-		<button>Edit</button>
+		<form action="add" action="POST">
+			<div class="row">
+				<div id="profile_top">
+					<h3>Add User</h3>
+					<ul>
+						<li>
+							Name: <input name="name" type="text"></input>
+						</li>
+						<li>
+							Email: <input name="email" type="text"></input>
+						</li>
+						<li>
+							Password: <input name="password" type="text"></input>
+						</li>
+						<li>
+							User pic: <input name="email" type="text"></input>
+						</li>
+
+					</ul>
+				</div>
+		</form>
 	</div>
-	
 	<div class="map">
 
 	</div>
-	<script id="file_template" type="text/template">
-			<h2>File a Report</h2>
+	<script id="file_report_template" type="text/template">
+		<h2>File a Report</h2>
 			<ul>
 				<form action="/reports/:id" method="POST">
 					<li>
@@ -61,6 +78,34 @@
 					<button>Post</button>
 				</form>		
 			</ul>
-		</script>
+	</script>
+	<script id="user_profile_template" type="text/template">
+		<form action="users" action="PUT">
+			<div class="row">
+				<div id="profile_top">
+					<h3>Your Info</h3>
+					<div class="col-md-6" id="profile_pic"></div>
+					<div class="col-md-6" id="profile_detail">
+						<ul>
+							<li>Name: </li>
+							<li>Email: </li>
+							<li>Current Subscriptions: </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="profile_bottom">
+				<ul>
+					<li><h3>Reports</h3></li>
+					<li>Report</li>
+					<li>Report</li>
+					<li>Report</li>
+					<li>Report</li>
+					<li>Report</li>
+				</ul>	
+			</div>
+			<button>Edit</button>
+		</form>
+	</script>
 </body>
 </html>
