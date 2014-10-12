@@ -1,0 +1,33 @@
+header{
+	height:250px;
+	width:100%;
+	background:red;
+}
+
+div#one.row{
+	height:150px;
+	width:100%;
+	background: rgba(255,255,255,0.8);
+	margin: 0;
+}
+
+div#two.row{
+	height:100px;
+	width:100%;
+	background: rgba(255,255,255,0.5);
+	margin: 0;
+}
+
+.sidebar{
+	width: 30%;
+	height: 500px;
+	float: left;
+	background: blue;
+}
+
+.map{
+	width: 70%;
+	height: 500px;
+	float: right;
+	background: yellow;
+}
