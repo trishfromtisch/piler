@@ -4,6 +4,10 @@ header{
 	background:red;
 }
 
+body{
+	text-align: center;
+}
+
 div#one.row{
 	height:150px;
 	width:100%;
@@ -16,7 +20,7 @@ div#two.row{
 	width:100%;
 	background: rgba(255,255,255,0.5);
 	margin: 0;
-}
+} 
 
 .sidebar{
 	width: 30%;
@@ -31,3 +35,4 @@ div#two.row{
 	float: right;
 	background: yellow;
 }
+
