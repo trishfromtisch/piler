@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+window.onload = function(){
+
+	//When you click a#file, "File a Report" sidebar apppears
+	$('a#file').click(function(){
+		$('div.sidebar').children().remove()
+		var template = _.template( $("#file_report_template").html() );
+		$('div.sidebar').append(template);
+	});
+
+	//When you click a#profile, "User Profile" sidebar apppears
+	$('a#profile').click(function(){
+		$('div.sidebar').children().remove()
+		var template = _.template( $("#user_profile_template").html() );
+		$('div.sidebar').append(template);
+	})
+};
+=======
 function whichNeighborhood(){
   //this is where they pick the neighborhood
   $.get("/neighborhoods", function(neighborhoods){
@@ -45,3 +63,4 @@ function RSS(){
 }
 
 
+>>>>>>> 4d4871a0a71c6e1fbe0b70fe0c170dd5dadcb6fd
