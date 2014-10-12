@@ -22,16 +22,7 @@ function getAndAssignMainMapBoundaries(feed) {
 	}
 	mainMap.setOptions(mapOptions)
 }
-function addMarkers(neighborhood) {
-	$.get("/neighborhoods", function(){
-		var neighborhood_id = _.find(arguments[0], function(hash){
-			if (neighborhood == hash.google_name) {
-				return hash.id
-			}
-		})
-		debugger
-	})
-}
+
 
 initializeMainMap()
 addMarkers()

@@ -1,2 +1,2 @@
-connection.rb
+lib/connection.rb
 .gitignore
