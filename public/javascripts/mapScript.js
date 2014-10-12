@@ -1,7 +1,7 @@
 
 var mainMap = new google.maps.Map(document.querySelector("div.map"), {})
 
-var neighborhood = "Bedford, Brooklyn"
+var neighborhood = "Greenpoint, Brooklyn"
 function formatAddressForRequest(address) {
 	return address.split(" ").join("+")
 }
