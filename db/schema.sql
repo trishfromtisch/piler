@@ -16,7 +16,8 @@ subscribe boolean,
 votes integer,
 picture text,
 description text,
-created_at timestamp
+created_at timestamp,
+neighborhood_id integer
 );
 
 CREATE TABLE comments (

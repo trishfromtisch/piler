@@ -8,6 +8,10 @@ header{
 	background:blue;
 }
 
+ul {
+	list-style: none;
+}
+
 a {
 	color: black;
 	font-size: 24px;
@@ -33,14 +37,20 @@ div#two.row{
 } 
 
 .sidebar{
+	padding: 3%;
 	width: 30%;
 	height: 500px;
 	float: left;
 	background: blue;
+	color: white;
 }
 
-label{
-	color: white;
+.sidebar li {
+	margin-bottom: 5%;
+}
+
+.sidebar button {
+	color: black;
 }
 
 .map{
