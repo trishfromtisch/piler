@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 window.onload = function(){
 
 	//When you click a#file, "File a Report" sidebar apppears
@@ -15,7 +14,7 @@ window.onload = function(){
 		$('div.sidebar').append(template);
 	})
 };
-=======
+
 function whichNeighborhood(){
   //this is where they pick the neighborhood
   $.get("/neighborhoods", function(neighborhoods){
@@ -50,6 +49,7 @@ function RSS(){
          $.get("/reports/"+reports[i].id+"/comments", function(comments){
         for (var i = 0; i < comments.length; i ++){
 
+
             $(".modal-body").append("<p>"+comments[i].content+"</p>")
           }
           
@@ -63,4 +63,3 @@ function RSS(){
 }
 
 
->>>>>>> 4d4871a0a71c6e1fbe0b70fe0c170dd5dadcb6fd
