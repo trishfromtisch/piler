@@ -16,6 +16,7 @@ subscribe boolean,
 votes integer,
 picture text,
 description text,
+neighborhood_id integer,
 created_at timestamp
 );
 
