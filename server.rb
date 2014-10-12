@@ -53,11 +53,6 @@ delete "/reports/:id" do
 	report.to_json
 end
 
-get "/reports/:neighborhood_id" do
-	content_type(:json)
-	reports = Comment.where({neighborhood_id: params["neighborhood_id"]})
-	reports.to_json
-end
 
 
 get "/reports/:id/comments" do

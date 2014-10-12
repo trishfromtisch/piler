@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="javascripts/navscript.js"></script>
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
@@ -21,6 +22,7 @@
 			<div class="col-md-3"><a href="#" id="file">File a Report</a></div>
 			<div class="col-md-3"><a href="#" id="profile">View Profile</a></div>
 			<div class="col-md-3"><a href="#" id="add">Add User</a></div>
+<<<<<<< HEAD
 
 		</div>
 	</header>
@@ -78,6 +80,45 @@
 					<button>Post</button>
 				</form>		
 			</ul>
+=======
+		</div>
+	</header>
+	<div class="sidebar">
+		
+	</div>
+	<div class="map">
+ 
+	</div>
+	<script id="file_report_template" type="text/template">
+		<h2>File a Report</h2>
+			<ul>
+				<form action="/reports/:id" method="POST">
+					<li>
+						<input name="anonymous" type="radio" value="anonymous">  
+		    			<label for="anonymous">Anonymous</label>
+	    			</li>
+	    			<br>
+	    			<li>
+		    			<input name="exsisting" type="radio" value="existing">  
+		    			<label for="existing">Existing</label>
+		    			</li>
+	    			<li>
+						Location: <input name="location" type="text"></input>
+					</li>
+					<li>
+						Description: <textarea name="address"cols="30" rows="4"></textarea>
+					</li>
+					<li>
+						Add Photo: <input name="photo" type="text"></input>
+					</li>	
+					<li>
+						<label for="subscribe">Subscribe</label>
+						<input name="subscribe" type="checkbox" value="subscribe">
+					</li>
+					<button>Post</button>
+				</form>		
+			</ul>
+>>>>>>> f21381cde7231ad266d61d24d68b44b1a2d93182
 	</script>
 	<script id="user_profile_template" type="text/template">
 		<form action="users" action="PUT">
