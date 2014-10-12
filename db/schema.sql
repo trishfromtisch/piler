@@ -16,8 +16,13 @@ subscribe boolean,
 votes integer,
 picture text,
 description text,
+<<<<<<< HEAD
 created_at timestamp,
 neighborhood_id integer
+=======
+neighborhood_id integer,
+created_at timestamp
+>>>>>>> 4d4871a0a71c6e1fbe0b70fe0c170dd5dadcb6fd
 );
 
 CREATE TABLE comments (
