@@ -1,4 +1,4 @@
-require_relative './lib/connection.rb'
+require_relative './db/connection.rb'
 
 Neighborhood.delete_all
 Report.delete_all
