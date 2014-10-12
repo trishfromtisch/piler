@@ -1,2 +1,2 @@
-~/dev/wdi/piler/db/connection.rb
-~/dev/wdi/piler/.gitignore
+connection.rb
+.gitignore
