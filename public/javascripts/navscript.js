@@ -1,3 +1,4 @@
+//this function puts the New User form into the side bar
 function newUserView (){
 	var $sidebar = $("div.sidebar")
 	$sidebar.empty()
@@ -24,6 +25,8 @@ subscription_neighborhood_id integer,
 picture text,
 password varchar(15)
 );
+
+//This function adds an event listener onto the submit new user function, which sends out an AJAX 
 function addNewUserButtonListener(){
 	$("button#addUser").click(function(){
 		var nameInput = $("input#name")
@@ -33,10 +36,18 @@ function addNewUserButtonListener(){
 		var subscribeNeighborhoodInput = $("select#subscribeNeighborhood")
 		var name = nameInput.val()
 		var email = emailInput.val()
-		var password = 
+		var password = passwordInput.val()
+		var picture = pictureInput.val()
 
+		if (subscribeNeighborhoodInput.val() == "") {
+			var subscribeAnswer = false;
+			var subscription_neighborhood_id = nil;
+		} else {
+			subscribeAnswer = true;
+			subscription_neighborhood_id = subscribeNeighborhoodInput.val();
+		}
 
-		$.post("/users", )
+		$.post("/users", {name: name, })
 	})
 }
 
