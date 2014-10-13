@@ -37,9 +37,8 @@ end
 
 post "/reports" do
 	content_type(:json)
-	hash = JSON.parse(request.body.read)
-	report = Report.create(hash)
-	report.to_json
+	reports = Report.create(report_params(params))
+	comment.to_json
 end
 
 put "/reports/:id" do
@@ -53,7 +52,6 @@ delete "/reports/:id" do
 	content_type(:json)
 	report = Report.find(params["id"])
 	report.destroy
-	report.to_json
 end
 
 
@@ -85,16 +83,14 @@ end
 
 post "/users" do
 	content_type(:json)
-	hash = JSON.parse(request.body.read)
-	user = User.create(hash)
+	user = User.create(user_params(params))
 	user.to_json
 end
 
 put "/users/:id" do
 	content_type(:json)
-	hash = JSON.parse(request.body.read)
-	user = User.find(params["id"])
-	user.update(hash)
+	useer = Report.find(params[:id])
+	user.update(user_params(params))
 	user.to_json
 end
 
@@ -138,6 +134,12 @@ end
 def comment_params(params)
   params.slice(*Comment.column_names)
 end
+
+def user_params(params)
+  params.slice(*User.column_names)
+end
+
+
 
 
 
