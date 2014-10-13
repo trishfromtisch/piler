@@ -54,10 +54,74 @@ function addNewUserButtonListener(){
 				subscribe: subscribeAnswer,
 				subscription_neighborhood_id: subscription_neighborhood_id,
 				picture: picture
-			})
+			}).done(function(data){
+				profileView(data)
+				})
+
+			}
+		})
 	}
-})
+
+function selectUserView(){
+	var $sidebar = $("div.sidebar");
+	$sidebar.empty();
+	selectUserHtml = "<h4>Enter a User to View Their Profile</h4>"
+	selectUserHtml +="<form role='form'> <div class='form-group'> <label for='queryName'>User Name</label> <input type='text' class='form-control' id='queryName' placeholder='e.g. PooperScooper123'> </div>"
+	selectUserHtml += "</form><button type='submit' id='selectUserButton' class='btn btn-default'>Submit</button>"
+	$sidebar.append(selectUserHtml)
+
+	//function below adds event listener to selectUserButton
+	$("button#selectUserButton").click(function(){
+		var queryName = $("input#queryName").val()
+		$.get("/users", function(usersInfo){
+			//this while loop checks to see if user is in our database
+			n = 0;
+			while (n < usersInfo.length) {
+				if (usersInfo[n].name.toLowerCase() == queryName.toLowerCase()) {		
+					var selectedUser = usersInfo[n]
+					n = usersInfo.length
+				} else {
+					selectedUser = ""
+					n += 1;
+				}}
+				// if user is in database, the conditional below takes you to their profile, if not, you see an alert
+			if (selectedUser != "") {
+				profileView(selectedUser)
+			} else {
+				alert("User does not exist.")
+			}
+
+			});
+		});
+};
+
+function profileView(user){
+	var $sidebar = $("div.sidebar");
+	console.log(user)
+	$sidebar.empty();
+		var profileViewHtml = "<div id='userProfileDiv'><h4>" + user.name + "</h4>"
+		profileViewHtml += "<div class='row'><p id='userEmail'> E-mail: " + user.email + "</p><br><p id='userSubscriptionNeighborhood'></p></div?</div>"
+	$sidebar.append(profileViewHtml)
+	
+	$.get("/neighborhoods/" + user.subscription_neighborhood_id, function(neighborhoodInfo){
+		console.log(neighborhoodInfo)
+		$("p#userSubscriptionNeighborhood").text("Subscription Neighborhood: " + neighborhoodInfo.name )
+	})
+
+	$.get("/users" + user.id + "/reports", function(reportsInfo) {
+		var $userProfileDiv = $("div#userProfileDiv")
+		_.each(reports, function(report){
+			var moreProfileViewHtml = ""		
+		})
+		
+	})
+
 }
+
+
+
+// ralph = User.create( {name: "Ralph Kramden", email: "ralph@dmta.gov", subscribe: true, subscription_neighborhood_id: alphabet_city.id, password: "norton"} )
+
 
 $(function(){
 
@@ -65,6 +129,11 @@ $(function(){
 	$("a#add").click(function(event){
 		event.preventDefault;
 		newUserView();
+	})
+
+	$("a#profile").click(function(event){
+		event.preventDefault;
+		selectUserView();
 	})
 
 

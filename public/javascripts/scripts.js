@@ -8,8 +8,8 @@ $('div.sidebar').append(template);
 });
 
 //When you click a#profile, "User Profile" sidebar apppears
-$('a#profile').click(function(){
-$('div.sidebar').children().remove()
+// $('a#profile').click(function(){
+// $('div.sidebar').children().remove()
     // var form = document.createElement('form'); 
     // var input = document.createElement('input');
     // var h3 = document.createElement('h3');
@@ -29,9 +29,9 @@ $('div.sidebar').children().remove()
     //    debugger
     //  }});
     // });
-var template = _.template( $("#user_profile_template").html() );
-$('div.sidebar').append(template);
-})
+// var template = _.template( $("#user_profile_template").html() );
+// $('div.sidebar').append(template);
+// })
 
 whichNeighborhood()
 
@@ -69,6 +69,8 @@ function RSS(neighborhood_id){
         $.get("/reports/"+reports[i].id+"/comments", function(comments){
           $(".modal-body").append("<h4>COMMENTS</h4>")
           for (var i = 0; i < comments.length; i ++){
+
+
 
 
 

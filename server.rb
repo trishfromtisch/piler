@@ -120,6 +120,12 @@ get "/neighborhoods" do
 	neighborhoods.to_json
 end
 
+get "/neighborhoods/:id" do
+	content_type(:json)
+	neighborhood = Neighborhood.find(params["id"])
+	neighborhood.to_json
+end
+
 get "/neighborhoods/:id/reports" do
 	content_type(:json)
 	reports = Report.where({neighborhood_id: params["id"]})
