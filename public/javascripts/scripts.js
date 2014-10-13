@@ -1,51 +1,78 @@
 window.onload = function(){
 
-	//When you click a#file, "File a Report" sidebar apppears
-	$('a#file').click(function(){
-		$('div.sidebar').children().remove()
-		var template = _.template( $("#file_report_template").html() );
-		$('div.sidebar').append(template);
-	});
+//When you click a#file, "File a Report" sidebar apppears
+$('a#file').click(function(){
+$('div.sidebar').children().remove()
+var template = _.template( $("#file_report_template").html() );
+$('div.sidebar').append(template);
+});
 
-	//When you click a#profile, "User Profile" sidebar apppears
-	$('a#profile').click(function(){
-		$('div.sidebar').children().remove()
+//When you click a#profile, "User Profile" sidebar apppears
+$('a#profile').click(function(){
+$('div.sidebar').children().remove()
     // var form = document.createElement('form'); 
     // var input = document.createElement('input');
     // var h3 = document.createElement('h3');
-    // $('h3').text('Put Username');
-    // $('input').attr('name', 'name');
-    // $('input').attr('type', 'text');
-    // $('form').append(h3);
-    // $('form').append(input);
+    // var button = document.createElement('button');
+    // $(form).attr('action', 'users/:id');
+    // $(form).attr('method', 'GET')
+    // $(h3).text('Put Username');
+    // $(button).text('Edit');
+    // $(input).attr('name', 'name');
+    // $(input).attr('type', 'text');
+    // $(form).append(h3);
+    // $(form).append(input);
+    // $(form).append(button);
     // $('div.sidebar').append(form);
+<<<<<<< HEAD
   //   $.ajax({url:"/users"})
   var template = _.template( $("#user_profile_template").html() );
   $('div.sidebar').append(template);
 })
 };
+=======
+    // $('button').click(function(e){
+    //  $.ajax({url:"/users/", success: function(e){
+    //    debugger
+    //  }});
+    // });
+var template = _.template( $("#user_profile_template").html() );
+$('div.sidebar').append(template);
+})
+
+whichNeighborhood()
+>>>>>>> 387429163178c987cfcd6bc3bdbfda0ecbc4c499
 
 function whichNeighborhood(){
   //this is where they pick the neighborhood
-  $.get("/neighborhoods", function(neighborhoods){
+  $.get("/neighborhoods", function(neighborhood){
+    neighborhoods = _.sortBy(neighborhood, function(neighborhoodObject) {return neighborhoodObject.name})
     var innards = "<select name ='neighborhood' class='neighborhood'>"
     for (var i = 0; i < neighborhoods.length; i ++){
       innards += "<option value="+ neighborhoods[i].id+">" + neighborhoods[i].name + "</option>"
     }
     innards += "</select>"+"<button id='enter'>ENTER</button>"
+<<<<<<< HEAD
     $(".sidebar").html(innards)
+=======
+     $(".sidebar").html(innards)
+     $("#enter").click(function(event){
+      neighborhood_id = $("[name='neighborhood']").val()
+     RSS(neighborhood_id)
+   })
+>>>>>>> 387429163178c987cfcd6bc3bdbfda0ecbc4c499
   })
-  RSS()
+  
 
 }
 
-function RSS(){
-  //getting the RSS feed
-  $("#enter").click(function(event){
-    neighborhood_id = $("[name='neighborhood']").val()
-    $.get("neighborhoods/"+ neighborhood_id + "/reports", function(reports){
 
+
+function RSS(neighborhood_id){
+    $.get("neighborhoods/"+ neighborhood_id + "/reports", function(report){
+      reports = _.sortBy(report, function(reportObject) {return reportObject.created_at}).reverse()
       var innards = ""
+<<<<<<< HEAD
       for (var i = 0; i < reports.length; i++){
         innards += "<li>" + reports[i].created_at+"</li><button class='btn btn-primary btn-lg' data-toggle='modal' data-target='#"+reports[i].id+"'>MORE INFORMATION</button>"    
         innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>Modal title</h4></div><div class='modal-body'>"
@@ -57,9 +84,24 @@ function RSS(){
 
         $.get("/reports/"+reports[i].id+"/comments", function(comments){
           for (var i = 0; i < comments.length; i ++){
+=======
+      for (var i = 0; i < 10; i++){
+        innards += "<li>" + reports[i].created_at+"  <img src='"+reports[i].picture+"' width='50' height ='50'></li><button class='btn btn-primary btn-lg' data-toggle='modal' data-target='#"+reports[i].id+"'>MORE INFORMATION</button>"    
+        innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+reports[i].description+"<br>VOTES "+ reports[i].votes+" </h4></div><div class='modal-body'>"
+        innards += "</div><div class='modal-footer'><button type='button' class='btn btn-primary comment'>Add Comment</button><button type='button' class='btn btn-primary up'>UP VOTE</button><button type='button' class='btn btn-primary down'>DOWN VOTE</button><button type='button' class='btn btn-default close' data-dismiss='modal'>Close</button></div></div></div></div>"
+        $(".sidebar").html(innards)
+
+        $.get("/reports/"+reports[i].id+"/comments", function(comments){
+          $(".modal-body").append("<h4>COMMENTS</h4>")
+          for (var i = 0; i < comments.length; i ++){
+
+
+
+>>>>>>> 387429163178c987cfcd6bc3bdbfda0ecbc4c499
 
 
           }
+<<<<<<< HEAD
 
 
           $(".modal-body").append("<p>"+comments[i].content+"</p>")
@@ -68,10 +110,108 @@ function RSS(){
       })
       }
     })
+=======
+          
+        })
+         upVoting(reports[i].votes,reports[i].id)
+         downVoting(reports[i].votes, reports[i].id)
+         comment(reports[i])
+       }
+          })
+>>>>>>> 387429163178c987cfcd6bc3bdbfda0ecbc4c499
 
-})
+
+
+
 
 
 }
 
 
+<<<<<<< HEAD
+=======
+function upVoting(votes, id){
+  $(".up").click(function(event){
+    newVotes = votes + 1
+    $.ajax({
+      url:"/reports/"+id,
+      type: 'PUT',
+      data: {votes: newVotes},
+      success: function(result){
+        
+        
+         
+        
+        
+       
+
+      }
+    })
+    
+
+  })
+
+
+}
+
+
+function downVoting(votes, id){
+
+  $(".down").click(function(event){
+    
+    newVotes = votes - 1
+    $.ajax({
+      url:"/reports/"+id,
+      type: 'PUT',
+      data: {votes: newVotes},
+      success: function(result){
+       
+      
+            
+
+      }
+    })
+    
+
+     
+
+  })
+ 
+
+}
+
+
+
+function comment(report){
+  $(".comment").click(function(event){
+       $(".modal-body").html("<textarea name='comment' rows = 5 cols= 10 placeholder='Comment'></textarea><br><input name='email' placeholder='email'><input name='password' placeholder='password'><br><button class='commentEnter'>ENTER</button>")
+     
+
+$(".commentEnter").click(function(event){
+  email = $("[name='email']").val().toLowerCase()
+  password = $("[name='password']").val().toLowerCase()
+
+  $.get("/users", function(users){
+    for (var i =0; i < users.length; i ++){
+
+    if (users[i].email.toLowerCase() == email && users[i].password.toLowerCase()==password){
+
+       comment = $("[name='comment']").val()
+       $.ajax({
+        url:"/comments",
+        type: 'POST',
+        data:{report_id: report.id, content: comment, user_id: users[i].id},
+        success: function(result){
+          alert("comment was successful")
+}
+})
+}
+}
+})
+})
+})
+}
+
+}
+
+>>>>>>> 387429163178c987cfcd6bc3bdbfda0ecbc4c499

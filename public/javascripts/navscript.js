@@ -18,13 +18,7 @@ function newUserView (){
 	addNewUserButtonListener()
 	}
 
-// name varchar(255),
-// email varchar(255),
-// subscribe boolean,
-// subscription_neighborhood_id integer,
-// picture text,
-// password varchar(15)
-// );
+
 
 //This function adds an event listener onto the submit new user function, which sends out an AJAX 
 function addNewUserButtonListener(){
