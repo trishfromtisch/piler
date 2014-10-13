@@ -78,6 +78,8 @@ function RSS(neighborhood_id){
         upVoting(reports[i].votes,reports[i].id)
         downVoting(reports[i].votes, reports[i].id)
         comment(reports[i])
+        $("li").mouseover(makeMarkerDoSomething)
+
         }
     
       }
@@ -169,16 +171,27 @@ function comment(report){
     })
   }
   
-  
+  var markers = []
   function makeMarker(report) {
-    var thing = []
-    $.get(geocodeAPI + formatAddressForRequest(report.location), function(){
+    var position = report.location
+    position = position.split("#").join("apt ")
+    $.get(geocodeAPI + formatAddressForRequest(position), function(){
       var coords = arguments[0].results[0].geometry.location
       var point = new google.maps.LatLng(coords.lat, coords.lng)
-      var marker = new google.maps.Marker({position: point})
+      var marker = new google.maps.Marker({position: point, title: report.location, id: report.id})
       marker.id = report.id
       marker.setMap(mainMap)
+      markers.push(marker)
+      marker.addListener("mouseover", blinkReportInSidebar)
     })
+  }
+
+  function blinkReportInSidebar(feed){
+    var listItem = $("div#" + this.id + ".modal")
+    if (listItem.length != 0) {
+      listItem.siblings("li").addClass("red")
+      window.setTimeout(function(){listItem.siblings("li").removeClass("red")}, 300)
+    }
   }
 
 
@@ -191,17 +204,26 @@ function closeButton(){
 
 }
 
-
+  function makeMarkerDoSomething() {
+    var id = $(this).siblings(".modal").attr("id")
+    _.each(markers, function(marker) {
+      if (marker.id == id) {
+        marker.setAnimation(google.maps.Animation.BOUNCE)
+        window.setTimeout(function(){marker.setAnimation(null)}, 720)
+      }
+    })
+  }
 
   populateMapMarkers()
 
   function resetMap(name) {
-    $.get(geocodeAPI + formatAddressForRequest(name), function(){
+    $.get(geocodeAPI + formatAddressForRequest(name) + ",+nyc", function(){
       var coords = arguments[0].results[0].geometry.location
       mainMap.setCenter({lat: coords.lat, lng: coords.lng})
       mainMap.setZoom(15)
     })
   }
+
 
 
 
