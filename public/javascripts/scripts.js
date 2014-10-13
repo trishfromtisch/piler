@@ -1,4 +1,3 @@
-
 window.onload = function(){
 
 	//When you click a#file, "File a Report" sidebar apppears
@@ -11,11 +10,20 @@ window.onload = function(){
 	//When you click a#profile, "User Profile" sidebar apppears
 	$('a#profile').click(function(){
 		$('div.sidebar').children().remove()
+    // var form = document.createElement('form'); 
+    // var input = document.createElement('input');
+    // var h3 = document.createElement('h3');
+    // $('h3').text('Put Username');
+    // $('input').attr('name', 'name');
+    // $('input').attr('type', 'text');
+    // $('form').append(h3);
+    // $('form').append(input);
+    // $('div.sidebar').append(form);
+  //   $.ajax({url:"/users"})
 		var template = _.template( $("#user_profile_template").html() );
 		$('div.sidebar').append(template);
 	})
 };
-
 
 function whichNeighborhood(){
   //this is where they pick the neighborhood
@@ -30,7 +38,6 @@ function whichNeighborhood(){
   RSS()
 
 }
-
 
 function RSS(){
   //getting the RSS feed
@@ -51,6 +58,10 @@ function RSS(){
          $.get("/reports/"+reports[i].id+"/comments", function(comments){
         for (var i = 0; i < comments.length; i ++){
 
+
+}
+
+
             $(".modal-body").append("<p>"+comments[i].content+"</p>")
           }
           
@@ -62,6 +73,4 @@ function RSS(){
 
 
 }
-
-
 

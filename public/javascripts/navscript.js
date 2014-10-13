@@ -47,14 +47,14 @@ function addNewUserButtonListener(){
 				subscription_neighborhood_id = subscribeNeighborhoodInput.val();
 			}
 			console.log(name + email + subscribeAnswer + subscription_neighborhood_id + picture) 
-			// $.post("/users", {
-			// 	name: name,
-			// 	email: email,
-			// 	password: password,
-			// 	subscribe: subscribeAnswer,
-			// 	subscription_neighborhood_id: subscription_neighborhood_id,
-			// 	picture: picture
-			// })
+			$.post("/users", {
+				name: name,
+				email: email,
+				password: password,
+				subscribe: subscribeAnswer,
+				subscription_neighborhood_id: subscription_neighborhood_id,
+				picture: picture
+			})
 	}
 })
 }
