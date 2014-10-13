@@ -1,142 +1,142 @@
 <html>
 <head>
-<title>Piler</title>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="http://underscorejs.org/underscore.js"></script>
-<script src="javascripts/scripts.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="javascripts/navscript.js"></script>
-<link rel="stylesheet" type="text/css" href="styles/style.css">
+	<title>Piler</title>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://underscorejs.org/underscore.js"></script>
+	<script src="javascripts/scripts.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="javascripts/navscript.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
-<header>
-<div class="row" id="one">
-<div class="col-md-3"><div id="logo1"><img src="images/logo.png"></div></div>
-<div class="col-md-6"><div id="piler">Piler</div></div>
-<div class="col-md-3"><div id="logo2"><img src="images/logo2.png"></div></div>
-</div>
-<div class="row" id="two">
-<div class="col-md-3"><a href="#" id="home">Home</a></div>
-<div class="col-md-3"><a href="#" id="file">File a Report</a></div>
-<div class="col-md-3"><a href="#" id="profile">View Profile</a></div>
-<div class="col-md-3"><a href="#" id="add">Add User</a></div>
-</div>
-</header>
-<div class="sidebar"></div>
-<div class="map"></div>
-
-<!-- <div id="wrapper">
-<div id="sidebar-wrapper" class="sidebar">
-<ul class="sidebar-nav">
-<li class="sidebar-brand"></li>
-</ul>
-</div>
-<div id="page-content-wrapper" class="map">
-<div class="container-fluid"></div>
-<div class="row">
-<div class="col-lg-12">
-<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle</a>
-</div>
-</div>
-</div>
-</div>
-</div> -->
-// <script>
-//    $("#menu-toggle").click(function(e) {
-//        e.preventDefault();
-//        $("#wrapper").toggleClass("toggled");
-//    });
-//    </script>
-<script id="file_report_template" type="text/template">
-<h2>File a Report</h2>
-<ul>
-<form action="/reports/:id" method="POST">
-<li>
-<input name="anonymous" type="radio" value="anonymous">  
-    <label for="anonymous">Anonymous</label>
-    </li>
-    <br>
-    <li>
-    <input name="exsisting" type="radio" value="existing">  
-    <label for="existing">Existing</label>
-    </li>
-    <li>
-Location: <input name="location" type="text"></input>
-</li>
-<li>
-Description: <textarea name="address"cols="30" rows="4"></textarea>
-</li>
-<li>
-Add Photo: <input name="photo" type="text"></input>
-</li> 
-<li>
-<label for="subscribe">Subscribe</label>
-<input name="subscribe" type="checkbox" value="subscribe">
-</li>
-<button>Post</button>
-</form> 
-</ul>
-</div>
-</script> 
-<script id="file_report_template" type="text/template">
-<h2>File a Report</h2>
-<ul>
-<form action="/reports/:id" method="POST">
-<li>
-<input name="anonymous" type="radio" value="anonymous">  
-    <label for="anonymous">Anonymous</label>
-    </li>
-    <br>
-    <li>
-    <input name="exsisting" type="radio" value="existing">  
-    <label for="existing">Existing</label>
-    </li>
-    <li>
-Location: <input name="location" type="text"></input>
-</li>
-<li>
-Description: <textarea name="address"cols="30" rows="4"></textarea>
-</li>
-<li>
-Add Photo: <input name="photo" type="text"></input>
-</li> 
-<li>
-<label for="subscribe">Subscribe</label>
-<input name="subscribe" type="checkbox" value="subscribe">
-</li>
-<button>Post</button>
-</form> 
-</ul>
-</script>
-<script id="user_profile_template" type="text/template">
-<form action="users" action="PUT">
-<div class="row">
-<div id="profile_top">
-<h3>Your Info</h3>
-<div class="col-md-6" id="profile_pic"></div>
-<div class="col-md-6" id="profile_detail">
-<ul>
-<li>Name: </li>
-<li>Email: </li>
-<li>Current Subscriptions: </li>
-</ul>
-</div>
-</div>
-</div>
-<div id="profile_bottom">
-<ul>
-<li><h3>Reports</h3></li>
-<li>Report</li>
-<li>Report</li>
-<li>Report</li>
-<li>Report</li>
-<li>Report</li>
-</ul> 
-</div>
-<button>Edit</button>
-</form>
-</script>
+	<header>
+		<div class="row" id="one">
+			<div class="col-md-3"><div id="logo1"><img src="images/logo.png"></div></div>
+			<div class="col-md-6"><div id="piler">Piler</div></div>
+			<div class="col-md-3"><div id="logo2"><img src="images/logo2.png"></div></div>
+		</div>
+		<div class="row" id="two">
+			<div class="col-md-3" id="home"></div>
+			<div class="col-md-3"><a href="#" id="file">File a Report</a></div>
+			<div class="col-md-3"><a href="#" id="profile">View Profile</a></div>
+			<div class="col-md-3"><a href="#" id="add">Add User</a></div>
+		</div>
+	</header>
+	<div class="sidebar"></div>
+	<div class="map"></div>
+ 
+<!-- 	<div id="wrapper">
+		<div id="sidebar-wrapper" class="sidebar">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"></li>
+			</ul>
+		</div>
+		<div id="page-content-wrapper" class="map">
+			<div class="container-fluid"></div>
+				<div class="row">
+					<div class="col-lg-12">
+						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	// <script>
+ //    $("#menu-toggle").click(function(e) {
+ //        e.preventDefault();
+ //        $("#wrapper").toggleClass("toggled");
+ //    });
+ //    </script>
+	<script id="file_report_template" type="text/template">
+		<h2>File a Report</h2>
+			<ul>
+				<form action="/reports/:id" method="POST">
+					<li>
+						<input name="anonymous" type="radio" value="anonymous">  
+		    			<label for="anonymous">Anonymous</label>
+	    			</li>
+	    			<br>
+	    			<li>
+		    			<input name="exsisting" type="radio" value="existing">  
+		    			<label for="existing">Existing</label>
+		    			</li>
+	    			<li>
+						Location: <input name="location" type="text"></input>
+					</li>
+					<li>
+						Description: <textarea name="address"cols="30" rows="4"></textarea>
+					</li>
+					<li>
+						Add Photo: <input name="photo" type="text"></input>
+					</li>	
+					<li>
+						<label for="subscribe">Subscribe</label>
+						<input name="subscribe" type="checkbox" value="subscribe">
+					</li>
+					<button>Post</button>
+				</form>		
+			</ul>
+		</div>
+	</script>	
+	<script id="file_report_template" type="text/template">
+		<h2>File a Report</h2>
+			<ul>
+				<form action="/reports/:id" method="POST">
+					<li>
+						<input name="anonymous" type="radio" value="anonymous">  
+		    			<label for="anonymous">Anonymous</label>
+	    			</li>
+	    			<br>
+	    			<li>
+		    			<input name="exsisting" type="radio" value="existing">  
+		    			<label for="existing">Existing</label>
+		    			</li>
+	    			<li>
+						Location: <input name="location" type="text"></input>
+					</li>
+					<li>
+						Description: <textarea name="address"cols="30" rows="4"></textarea>
+					</li>
+					<li>
+						Add Photo: <input name="photo" type="text"></input>
+					</li>	
+					<li>
+						<label for="subscribe">Subscribe</label>
+						<input name="subscribe" type="checkbox" value="subscribe">
+					</li>
+					<button>Post</button>
+				</form>		
+			</ul>
+	</script>
+	<script id="user_profile_template" type="text/template">
+		<form action="users" action="PUT">
+			<div class="row">
+				<div id="profile_top">
+					<h3>Your Info</h3>
+					<div class="col-md-6" id="profile_pic"></div>
+					<div class="col-md-6" id="profile_detail">
+						<ul>
+							<li>Name: </li>
+							<li>Email: </li>
+							<li>Current Subscriptions: </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="profile_bottom">
+				<ul>
+					<li><h3>Reports</h3></li>
+					<li>Report</li>
+					<li>Report</li>
+					<li>Report</li>
+					<li>Report</li>
+					<li>Report</li>
+				</ul>	
+			</div>
+			<button>Edit</button>
+		</form>
+	</script>
 </body>
 </html>
