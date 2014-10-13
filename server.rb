@@ -1,17 +1,21 @@
 require "sinatra"
-require "sinatra/reloader"
 require "pry"
-require "active_support"
-require "json"
+require "rack"
+require 'rake'
+require "sinatra/activerecord"
+require "sinatra/contrib"
+
 require_relative "./db/connection.rb"
 require_relative "./lib/comment.rb"
 require_relative "./lib/neighborhood.rb"
 require_relative "./lib/report.rb"
 require_relative "./lib/user.rb"
+require "active_support"
 
 after do 
 	ActiveRecord::Base.connection.close
 end
+
 
 get "/" do
 	erb(:index)
@@ -33,26 +37,22 @@ end
 
 post "/reports" do
 	content_type(:json)
-	hash = JSON.parse(request.body.read)
-	report = Report.create(hash)
-	report.to_json
+	reports = Report.create(report_params(params))
+	comment.to_json
 end
 
 put "/reports/:id" do
 	content_type(:json)
-	report = Report.find(params["id"])
-	hash = JSON.parse(request.body.read)
-	report.update(hash)
-	hash.to_json
+	report = Report.find(params[:id])
+	report.update(report_params(params))
+	report.to_json
 end
 
 delete "/reports/:id" do
 	content_type(:json)
 	report = Report.find(params["id"])
 	report.destroy
-	report.to_json
 end
-
 
 
 get "/reports/:id/comments" do
@@ -60,6 +60,13 @@ get "/reports/:id/comments" do
 	comments = Comment.where({report_id: params["id"]})
 	comments.to_json
 end
+
+post "/comments" do
+	content_type(:json)
+	comment = Comment.create(comment_params(params))
+	comment.to_json
+end
+
 
 #Users routes
 get "/users" do
@@ -76,16 +83,14 @@ end
 
 post "/users" do
 	content_type(:json)
-	hash = JSON.parse(request.body.read)
-	user = User.create(hash)
+	user = User.create(user_params(params))
 	user.to_json
 end
 
 put "/users/:id" do
 	content_type(:json)
-	hash = JSON.parse(request.body.read)
-	user = User.find(params["id"])
-	user.update(hash)
+	useer = Report.find(params[:id])
+	user.update(user_params(params))
 	user.to_json
 end
 
@@ -117,7 +122,24 @@ end
 
 get "/neighborhoods/:id/reports" do
 	content_type(:json)
-	reports = Report.where( {neighborhood_id: params["id"]})
+	reports = Report.where({neighborhood_id: params["id"]})
 	reports.to_json
 end
+
+
+def report_params(params)
+  params.slice(*Report.column_names)
+end
+
+def comment_params(params)
+  params.slice(*Comment.column_names)
+end
+
+def user_params(params)
+  params.slice(*User.column_names)
+end
+
+
+
+
 

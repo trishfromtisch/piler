@@ -102,7 +102,16 @@ div#profile_pic {
 	color: black;
 
 }
+
+.modal-body{
+	color: black;
+}
  
+.modal-title{
+	color: black;
+}
+
+
 div#profile_pic {
 	height: 150px;
 	width: 150px;
