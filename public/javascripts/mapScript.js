@@ -1,14 +1,15 @@
+$("div.container-fluid").append("<div class=map>")
 
 var mainMap = new google.maps.Map(document.querySelector("div.map"), {})
 
-var neighborhood = "Greenpoint, Brooklyn"
+var scratchNeighborhood = "Greenpoint, Brooklyn"
 function formatAddressForRequest(address) {
 	return address.split(" ").join("+")
 }
 var geocodeAPI = "https://maps.googleapis.com/maps/api/geocode/json?address="
 
 function initializeMainMap() {
-	$.get(geocodeAPI + formatAddressForRequest(neighborhood), getAndAssignMainMapBoundaries)
+	$.get(geocodeAPI + formatAddressForRequest(scratchNeighborhood), getAndAssignMainMapBoundaries)
 }
 
 function getAndAssignMainMapBoundaries(feed) {
@@ -23,6 +24,26 @@ function getAndAssignMainMapBoundaries(feed) {
 	mainMap.setOptions(mapOptions)
 }
 
+function createMarker(coords, time) {
+
+	var options = {
+		position: coords,
+		title: time,
+		map: mainMap
+	}
+	var marker = new google.maps.Marker(options)
+}
+
+function createMarkers(array, map) {
+	_.each(array, function(object){
+		var address = formatAddressForRequest(object.location)
+		$.get(geocodeAPI + address, function() {
+			var coordinates = arguments[0]results[0].geometry.location
+			var latLng = new google.maps.LatLng(coordinates.lat, coordinates.lng)
+			createMarker(latLng, object.created_at)
+		})
+	}
+}
+
 
 initializeMainMap()
-addMarkers()
