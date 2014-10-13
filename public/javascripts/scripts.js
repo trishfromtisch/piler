@@ -1,23 +1,3 @@
-//    function sendGrid(name, email, text){
-
-//    $.ajax({
-//       url:"https://sendgrid.com/api/mail.send.json",
-//       type: 'POST',
-//       data: {
-//       api_user:"tejal",
-//       api_key: "guessthis",
-//       to: email,
-//       toname: name,
-//       from: "tejalpatel_84@hotmail.com",
-//       subject: "YOUR NOTIFICATION",
-//       text: text,
-//     },
-//       success: function(result){
-    
-//       }
-//     })
- 
-// }
 
 
 window.onload = function(){
@@ -143,7 +123,7 @@ function comment(report){
             type: 'POST',
             data:{report_id: report.id, content: comment, user_id: users[i].id},
             success: function(result){
-              
+
             alert("Comment was Successful")
             $(".close").click()
             window.location.reload()
