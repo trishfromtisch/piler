@@ -20,9 +20,9 @@ window.onload = function(){
     // $('form').append(input);
     // $('div.sidebar').append(form);
   //   $.ajax({url:"/users"})
-		var template = _.template( $("#user_profile_template").html() );
-		$('div.sidebar').append(template);
-	})
+  var template = _.template( $("#user_profile_template").html() );
+  $('div.sidebar').append(template);
+})
 };
 
 function whichNeighborhood(){
@@ -31,9 +31,9 @@ function whichNeighborhood(){
     var innards = "<select name ='neighborhood' class='neighborhood'>"
     for (var i = 0; i < neighborhoods.length; i ++){
       innards += "<option value="+ neighborhoods[i].id+">" + neighborhoods[i].name + "</option>"
-      }
+    }
     innards += "</select>"+"<button id='enter'>ENTER</button>"
-     $(".sidebar").html(innards)
+    $(".sidebar").html(innards)
   })
   RSS()
 
@@ -51,23 +51,23 @@ function RSS(){
         innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>Modal title</h4></div><div class='modal-body'>"
         innards += "</div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button><button type='button' class='btn btn-primary'>Save changes</button></div></div></div></div>"
         
-   
+        
 
-       $(".sidebar").html(innards)
+        $(".sidebar").html(innards)
 
-         $.get("/reports/"+reports[i].id+"/comments", function(comments){
-        for (var i = 0; i < comments.length; i ++){
+        $.get("/reports/"+reports[i].id+"/comments", function(comments){
+          for (var i = 0; i < comments.length; i ++){
 
-<<<<<<< HEAD
-}
-=======
 
-            $(".modal-body").append("<p>"+comments[i].content+"</p>")
           }
-          
-        })
-       }
-          })
+
+
+          $(".modal-body").append("<p>"+comments[i].content+"</p>")
+        }
+        
+      })
+      }
+    })
 
 })
 
@@ -75,8 +75,3 @@ function RSS(){
 }
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 67482dea93315e96a1f5fb72be3089af2f6b68a7
->>>>>>> b05a9bd5082475dbcddeb6eef8df9215b07c6439
