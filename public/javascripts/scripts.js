@@ -24,13 +24,6 @@ $('div.sidebar').children().remove()
     // $(form).append(input);
     // $(form).append(button);
     // $('div.sidebar').append(form);
-<<<<<<< HEAD
-  //   $.ajax({url:"/users"})
-  var template = _.template( $("#user_profile_template").html() );
-  $('div.sidebar').append(template);
-})
-};
-=======
     // $('button').click(function(e){
     //  $.ajax({url:"/users/", success: function(e){
     //    debugger
@@ -41,7 +34,6 @@ $('div.sidebar').append(template);
 })
 
 whichNeighborhood()
->>>>>>> 387429163178c987cfcd6bc3bdbfda0ecbc4c499
 
 function whichNeighborhood(){
   //this is where they pick the neighborhood
@@ -50,17 +42,13 @@ function whichNeighborhood(){
     var innards = "<select name ='neighborhood' class='neighborhood'>"
     for (var i = 0; i < neighborhoods.length; i ++){
       innards += "<option value="+ neighborhoods[i].id+">" + neighborhoods[i].name + "</option>"
-    }
+      }
     innards += "</select>"+"<button id='enter'>ENTER</button>"
-<<<<<<< HEAD
-    $(".sidebar").html(innards)
-=======
      $(".sidebar").html(innards)
      $("#enter").click(function(event){
       neighborhood_id = $("[name='neighborhood']").val()
      RSS(neighborhood_id)
    })
->>>>>>> 387429163178c987cfcd6bc3bdbfda0ecbc4c499
   })
   
 
@@ -72,19 +60,6 @@ function RSS(neighborhood_id){
     $.get("neighborhoods/"+ neighborhood_id + "/reports", function(report){
       reports = _.sortBy(report, function(reportObject) {return reportObject.created_at}).reverse()
       var innards = ""
-<<<<<<< HEAD
-      for (var i = 0; i < reports.length; i++){
-        innards += "<li>" + reports[i].created_at+"</li><button class='btn btn-primary btn-lg' data-toggle='modal' data-target='#"+reports[i].id+"'>MORE INFORMATION</button>"    
-        innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>Modal title</h4></div><div class='modal-body'>"
-        innards += "</div><div class='modal-footer'><button type='button' class='btn btn-default' data-dismiss='modal'>Close</button><button type='button' class='btn btn-primary'>Save changes</button></div></div></div></div>"
-        
-        
-
-        $(".sidebar").html(innards)
-
-        $.get("/reports/"+reports[i].id+"/comments", function(comments){
-          for (var i = 0; i < comments.length; i ++){
-=======
       for (var i = 0; i < 10; i++){
         innards += "<li>" + reports[i].created_at+"  <img src='"+reports[i].picture+"' width='50' height ='50'></li><button class='btn btn-primary btn-lg' data-toggle='modal' data-target='#"+reports[i].id+"'>MORE INFORMATION</button>"    
         innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+reports[i].description+"<br>VOTES "+ reports[i].votes+" </h4></div><div class='modal-body'>"
@@ -97,20 +72,10 @@ function RSS(neighborhood_id){
 
 
 
->>>>>>> 387429163178c987cfcd6bc3bdbfda0ecbc4c499
 
 
+            $(".modal-body").append("<p>"+comments[i].content+"</p>")
           }
-<<<<<<< HEAD
-
-
-          $(".modal-body").append("<p>"+comments[i].content+"</p>")
-        }
-        
-      })
-      }
-    })
-=======
           
         })
          upVoting(reports[i].votes,reports[i].id)
@@ -118,7 +83,6 @@ function RSS(neighborhood_id){
          comment(reports[i])
        }
           })
->>>>>>> 387429163178c987cfcd6bc3bdbfda0ecbc4c499
 
 
 
@@ -128,8 +92,6 @@ function RSS(neighborhood_id){
 }
 
 
-<<<<<<< HEAD
-=======
 function upVoting(votes, id){
   $(".up").click(function(event){
     newVotes = votes + 1
@@ -213,5 +175,3 @@ $(".commentEnter").click(function(event){
 }
 
 }
-
->>>>>>> 387429163178c987cfcd6bc3bdbfda0ecbc4c499
