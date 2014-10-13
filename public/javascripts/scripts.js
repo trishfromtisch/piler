@@ -1,3 +1,39 @@
+window.onload = function(){
+
+//When you click a#file, "File a Report" sidebar apppears
+$('a#file').click(function(){
+$('div.sidebar').children().remove()
+var template = _.template( $("#file_report_template").html() );
+$('div.sidebar').append(template);
+});
+
+//When you click a#profile, "User Profile" sidebar apppears
+$('a#profile').click(function(){
+$('div.sidebar').children().remove()
+    // var form = document.createElement('form'); 
+    // var input = document.createElement('input');
+    // var h3 = document.createElement('h3');
+    // var button = document.createElement('button');
+    // $(form).attr('action', 'users/:id');
+    // $(form).attr('method', 'GET')
+    // $(h3).text('Put Username');
+    // $(button).text('Edit');
+    // $(input).attr('name', 'name');
+    // $(input).attr('type', 'text');
+    // $(form).append(h3);
+    // $(form).append(input);
+    // $(form).append(button);
+    // $('div.sidebar').append(form);
+    // $('button').click(function(e){
+    //  $.ajax({url:"/users/", success: function(e){
+    //    debugger
+    //  }});
+    // });
+var template = _.template( $("#user_profile_template").html() );
+$('div.sidebar').append(template);
+})
+
+whichNeighborhood()
 
 function whichNeighborhood(){
   //this is where they pick the neighborhood
@@ -19,24 +55,24 @@ function whichNeighborhood(){
 }
 
 
+
 function RSS(neighborhood_id){
-  //getting the RSS feed
-  
-    
     $.get("neighborhoods/"+ neighborhood_id + "/reports", function(report){
       reports = _.sortBy(report, function(reportObject) {return reportObject.created_at}).reverse()
-
       var innards = ""
       for (var i = 0; i < 10; i++){
         innards += "<li>" + reports[i].created_at+"  <img src='"+reports[i].picture+"' width='50' height ='50'></li><button class='btn btn-primary btn-lg' data-toggle='modal' data-target='#"+reports[i].id+"'>MORE INFORMATION</button>"    
         innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+reports[i].description+"<br>VOTES "+ reports[i].votes+" </h4></div><div class='modal-body'>"
         innards += "</div><div class='modal-footer'><button type='button' class='btn btn-primary comment'>Add Comment</button><button type='button' class='btn btn-primary up'>UP VOTE</button><button type='button' class='btn btn-primary down'>DOWN VOTE</button><button type='button' class='btn btn-default close' data-dismiss='modal'>Close</button></div></div></div></div>"
+        $(".sidebar").html(innards)
 
-       $(".sidebar").html(innards)
-
-         $.get("/reports/"+reports[i].id+"/comments", function(comments){
+        $.get("/reports/"+reports[i].id+"/comments", function(comments){
           $(".modal-body").append("<h4>COMMENTS</h4>")
-        for (var i = 0; i < comments.length; i ++){
+          for (var i = 0; i < comments.length; i ++){
+
+
+
+
 
             $(".modal-body").append("<p>"+comments[i].content+"</p>")
           }
@@ -138,4 +174,5 @@ $(".commentEnter").click(function(event){
 })
 }
 
-//cant update modal after its done
+}
+

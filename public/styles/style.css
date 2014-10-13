@@ -7,11 +7,12 @@ header{
 	width:100%;
 	background:blue;
 }
- 
+
 ul {
 	list-style: none;
 }
  
+
 a {
 	color: black;
 	font-size: 24px;
@@ -43,6 +44,63 @@ div#two.row{
 	float: left;
 	background: blue;
 	color: white;
+
+}
+
+div#profile_pic {
+	height: 150px;
+	width: 150px;
+	background: black;
+}
+
+#wrapper{
+	padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+.sidebar li {
+	margin-bottom: 5%;
+}
+
+.sidebar button {
+	color: black;
+
 }
 
 .modal-body{
