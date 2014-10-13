@@ -49,7 +49,7 @@ function whichNeighborhood(){
     $(".sidebar").html(innards)
     $("#enter").click(function(event){
       neighborhood_id = $("[name='neighborhood']").val()
-      resetMap(neighborhood_id)
+      resetMap($("select option[value=" + neighborhood_id + "]").text())
      RSS(neighborhood_id)
      
    })
@@ -65,7 +65,7 @@ function RSS(neighborhood_id){
         alert("No reports for that area")
       } else {
         var innards = ""
-        for (var i = 0; i < 10; i++){
+        for (var i = 0; i < reports.length && i < 10; i++){
           innards += "<li>" + reports[i].created_at+"  <img src='"+reports[i].picture+"' width='50' height ='50'></li><button class='btn btn-primary btn-lg' data-toggle='modal' data-target='#"+reports[i].id+"'>MORE INFORMATION</button>"    
            innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+reports[i].description+"<br>VOTES "+ reports[i].votes+" </h4></div><div class='modal-body'>"
             innards += "</div><div class='modal-footer'><button type='button' class='btn btn-primary comment'>Add Comment</button><button type='button' class='btn btn-primary up'>UP VOTE</button><button type='button' class='btn btn-primary down'>DOWN VOTE</button><button type='button' class='btn btn-default close' data-dismiss='modal'>Close</button></div></div></div></div>"
@@ -180,11 +180,12 @@ function comment(report){
 
 
   populateMapMarkers()
-  function resetMap(id) {
-    $.get("/neighborhoods/" + id, function() {
-      $.get(geocodeAPI + formatAddressForRequest(agruments[0].google_name, function(){
-        debugger
-      }))
+
+  function resetMap(name) {
+    $.get(geocodeAPI + formatAddressForRequest(name), function(){
+      var coords = arguments[0].results[0].geometry.location
+      mainMap.setCenter({lat: coords.lat, lng: coords.lng})
+      mainMap.setZoom(15)
     })
   }
 
