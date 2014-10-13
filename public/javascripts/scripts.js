@@ -45,8 +45,12 @@ window.onload = function(){
     $('div#piler').append(div);
     $("#enter").click(function(event){
       neighborhood_id = $("[name='neighborhood']").val()
-    RSS(neighborhood_id)
-  })
+
+      resetMap($("select option[value=" + neighborhood_id + "]").text())
+     RSS(neighborhood_id)
+     
+   })
+
   })
 
 
@@ -147,6 +151,36 @@ function comment(report){
   })
   })
 }
+    
+
+  var geocodeAPI = "https://maps.googleapis.com/maps/api/geocode/json?address="
+  function formatAddressForRequest(address) {
+    return address.split(" ").join("+")
+  }
+  var mapInitialOptions = {
+    center: {lat: 40.7127837, lng: -74.0059413},
+    zoom: 13
+  }
+  var mainMap = new google.maps.Map(document.querySelector("div.map"), mapInitialOptions)
+  function populateMapMarkers() {
+    $.get("/reports", function() {
+      var list = arguments[0]
+      _.each(list, makeMarker)
+    })
+  }
+  
+  
+  function makeMarker(report) {
+    var thing = []
+    $.get(geocodeAPI + formatAddressForRequest(report.location), function(){
+      var coords = arguments[0].results[0].geometry.location
+      var point = new google.maps.LatLng(coords.lat, coords.lng)
+      var marker = new google.maps.Marker({position: point})
+      marker.id = report.id
+      marker.setMap(mainMap)
+    })
+  }
+
 
 function closeButton(){
    $(".close").click(function(event){
@@ -156,6 +190,19 @@ function closeButton(){
    })
 
 }
+
+
+
+  populateMapMarkers()
+
+  function resetMap(name) {
+    $.get(geocodeAPI + formatAddressForRequest(name), function(){
+      var coords = arguments[0].results[0].geometry.location
+      mainMap.setCenter({lat: coords.lat, lng: coords.lng})
+      mainMap.setZoom(15)
+    })
+  }
+
 
 
 
