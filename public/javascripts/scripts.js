@@ -110,25 +110,32 @@ function downVoting(votes, id){
 
 function comment(report){
   $(".comment").click(function(event){
-       $(".modal-body").html("<textarea name ='comment' rows = 5 cols 10 placeholder='Comment'></textarea><br><button class='commentEnter'>ENTER</button>")
+       $(".modal-body").html("<textarea name='comment' rows = 5 cols= 10 placeholder='Comment'></textarea><br><input name='email' placeholder='email'><input name='password' placeholder='password'><br><button class='commentEnter'>ENTER</button>")
      
 
 $(".commentEnter").click(function(event){
+  email = $("[name='email']").val().toLowerCase()
+  password = $("[name='password']").val().toLowerCase()
+
+  $.get("/users", function(users){
+    for (var i =0; i < users.length; i ++){
+
+    if (users[i].email.toLowerCase() == email && users[i].password.toLowerCase()==password){
+
        comment = $("[name='comment']").val()
        $.ajax({
         url:"/comments",
         type: 'POST',
-        data:{report_id: report.id, content: comment, user_id: 2},
+        data:{report_id: report.id, content: comment, user_id: users[i].id},
         success: function(result){
-
-        }
-
-       })
-
-       })
-  })
-   
- 
+          alert("comment was successful")
+}
+})
+}
+}
+})
+})
+})
 }
 
 //cant update modal after its done
