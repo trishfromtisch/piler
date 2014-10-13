@@ -61,6 +61,7 @@ function addNewUserButtonListener(){
 
 $(function(){
 
+
 	$("a#add").click(function(event){
 		event.preventDefault;
 		newUserView();
