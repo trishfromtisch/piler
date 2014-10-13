@@ -89,7 +89,7 @@ end
 
 put "/users/:id" do
 	content_type(:json)
-	useer = Report.find(params[:id])
+	user = User.find(params[:id])
 	user.update(user_params(params))
 	user.to_json
 end

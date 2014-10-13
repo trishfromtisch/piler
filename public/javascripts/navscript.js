@@ -39,12 +39,12 @@ function addNewUserButtonListener(){
 			
 			if (subscribeNeighborhoodInput.val() == "") {
 				var subscribeAnswer = false;
-				var subscription_neighborhood_id = nil;
+				var subscription_neighborhood_id = "nil";
 			} else {
 				subscribeAnswer = true;
 				subscription_neighborhood_id = subscribeNeighborhoodInput.val();
 			}
-			console.log(name + email + subscribeAnswer + subscription_neighborhood_id + picture) 
+			console.log(name + email + subscribeAnswer + subscription_neighborhood_id) 
 			$.post("/users", {
 				name: name,
 				email: email,
@@ -155,7 +155,7 @@ function addSaveChangesButton(user) {
 			
 			if ($("select#editSubscribeNeighborhood").val() == "") {
 				var newSubscribeAnswer = false;
-				var new_subscription_neighborhood_id = nil;
+				var new_subscription_neighborhood_id = "nil";
 			} else {
 				newSubscribeAnswer = true;
 				new_subscription_neighborhood_id = $("select#editSubscribeNeighborhood").val();
@@ -174,7 +174,7 @@ function addSaveChangesButton(user) {
 			};
 
 			console.log("clicked save changes" + newName + newEmail + newSubscribeAnswer + new_subscription_neighborhood_id) 
-			$.ajax(type: "PUT",
+			$.ajax({type: "PUT",
 				url: "/users/" + user.id, 
 				data: {
 				name: newName,
@@ -182,7 +182,7 @@ function addSaveChangesButton(user) {
 				password: user.password,
 				subscribe: newSubscribeAnswer,
 				subscription_neighborhood_id: new_subscription_neighborhood_id,
-			}).done(function(data){
+			}}).done(function(data){
 				profileView(data)
 				})
 		}
