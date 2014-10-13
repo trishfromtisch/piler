@@ -1,9 +1,8 @@
 <html>
 <head>
-
 <title>Piler</title>
-<link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2cbRqSmMdgLPExYSf-TwneYwlZjtbyqg"></script>
+<link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
 <script src="javascripts/scripts.js"></script>
@@ -21,7 +20,7 @@
 <div class="col-md-3"><div id="logo2"><img src="images/logo2.png"></div></div>
 </div>
 <div class="row" id="two">
-
+<!-- <div class="col-md-3" id="home"></div> -->
 <div class="col-md-4"><a href="#" id="file">File a Report</a></div>
 <div class="col-md-4" id="center"><a href="#" id="profile">View Profile</a></div>
 <div class="col-md-4"><a href="#" id="add">Add User</a></div>
@@ -30,66 +29,138 @@
 <div class="sidebar"></div>
 <div class="map"></div>
 
+<script>
 
+// </script>
 <script id="file_report_template" type="text/template">
 <div class="file_a_report">
 <h3>File a Report</h3>
 <ul>
-<form action="/reports" method="POST">
 <li>
-<input name="anonymous" type="radio" value="anonymous">  
-    <label for="anonymous">Anonymous</label>
+<input name="anonymous" type="radio" value="anonymous" id="anonymous">  
+    <label>Anonymous</label>
     </li>
     <br>
     <li>
-    <input name="exsisting" type="radio" value="existing">  
-    <label for="existing">Existing</label>
+    <input name="existing" type="radio" value="existing"  id="existing">  
+    <label>Existing</label>
     </li>
-    <li>
-Location: <input name="location" type="text"></input>
+    <li id="neighborhoods_li">
+Neighborhoods:
 </li>
 <li>
-Description: <textarea name="address"cols="30" rows="4"></textarea>
+Location: <input name="location" type="text" id="location"></input>
 </li>
 <li>
-Add Photo: <input name="photo" type="text"></input>
+Description: <textarea name="description" cols="30" rows="4" id="description"></textarea>
+</li>
+<li>
+Add Photo: <input name="photo" type="text" id="photo"></input>
 </li> 
 <li>
 <label for="subscribe">Subscribe</label>
-<input name="subscribe" type="checkbox" value="subscribe">
+<input name="subscribe" type="checkbox" value="subscribe" id="subscribe">
 </li>
-<button>Post</button>
-</form> 
+<button class="post">Post</button> 
 </ul>
 </div>
-</script> 
-<script id="user_profile_template" type="text/template">
-<form action="users" action="PUT">
-<div class="row">
-<div id="profile_top">
-<h3>Your Info</h3>
-<div class="col-md-6" id="profile_pic"></div>
-<div class="col-md-6" id="profile_detail">
-<ul>
-<li>Name: </li>
-<li>Email: </li>
-<li>Current Subscriptions: </li>
-</ul>
-</div>
-</div>
-</div>
-<div id="profile_bottom">
-<ul>
-<li><h3>Reports</h3></li>
-<li>Report</li>
-<li>Report</li>
-<li>Report</li>
-<li>Report</li>
-<li>Report</li>
-</ul> 
-</div>
-<button>Edit</button>
-</form>
+<script type="text/javascript">
+$.get("/neighborhoods", function(neighborhood){
+    neighborhoods = _.sortBy(neighborhood, function(neighborhoodObject) {return neighborhoodObject.name})
+    var innards = "<select name ='neighborhood_reports' class='neighborhood'>"
+    var div = document.createElement('div');
+    $(div).attr('id', 'option_reports');
+    $(div).attr('style', ',margin: 0');
+    for (var i = 0; i < neighborhoods.length; i ++){
+      innards += "<option value="+ neighborhoods[i].id+">" + neighborhoods[i].name + "</option>"
+      }
+    innards += "</select>"
+    $(div).html(innards);
+    $('li#neighborhoods_li').append(div);
+  })
+
+
+
+
+$('input#existing').click(function(){
+$('input#email').parent('li').remove();
+$('input#password').parent('li').remove();
+$('input#anonymous').attr('checked', false);
+var email_li = document.createElement('li');
+var password_li = document.createElement('li'); 
+var email_input = document.createElement('input');
+var password_input = document.createElement('input');
+$(email_input).attr('name', 'email');
+$(password_input).attr('name', 'password');
+$(email_li).text('Email: ');
+$(password_li).text('Password: ');
+$(email_input).attr('id', 'email');
+$(password_input).attr('id', 'password');
+$(email_li).append(email_input);
+$(password_li).append(password_input);
+$(email_li).insertBefore('li#neighborhoods_li');
+$(password_li).insertBefore('li#neighborhoods_li');
+$('button.post').click(function(){
+$.get("/users", function(users){
+      for (var i=0;i<users.length;i++){
+      var email = $('input#email').val();
+      var password = $('input#password').val();
+if (users[i].email.toLowerCase() == email && users[i].password.toLowerCase() == password){
+var location = $('input#location').val();
+  var neighborhood_id = $("[name='neighborhood_reports']").val()
+  var description = $('textarea#description').val()
+  var photo = $('input#photo').val();
+  // var email = $('input#email').val();
+  var user_id;
+  if($('input#subscribe').prop('checked') == true){
+  var subscribe = true;
+  } else {
+  var subscribe = false;
+  };
+  $.ajax({url:"/users", type: 'GET', success: function(result){
+  for(var i=0;i<result.length;i++){
+  if(result[i].name == email){
+  var user_id = result[i].id;
+  }
+  };
+  $.ajax({url:"/reports", type: 'POST', data:{location: location, neighborhood_id: neighborhood_id, description: description, picture: photo, subscribe: subscribe, user_id: user_id, votes: 0}, success: function(result){
+          }});
+  }});
+  $('textarea#description').val() = "";
+  $('input#photo').val() = "";
+  $('email_input#email').val() = "";
+  } else if ( i == users.length - 1 && users[i].email.toLowerCase() != email && users[i].password.toLowerCase() != password) {
+          alert("Wrong password and user combination")
+        }
+      }
+    })
+});
+});
+
+$('input#anonymous').click(function(){
+$('input#email').parent('li').remove();
+$('input#password').parent('li').remove();
+$('input#existing').attr('checked', false);
+$('button.post').click(function(){
+var location = $('input#location').val();
+var neighborhood_id = $("[name='neighborhood_reports']").val();
+  var description = $('textarea#description').val()
+  var photo = $('input#photo').val();
+  if($('input#subscribe').prop('checked') == true){
+  var subscribe = true;
+  } else {
+  var subscribe = false;
+  };
+$.ajax({url:"/reports",type: 'POST', data:{location: location, neighborhood_id: neighborhood_id, description: description, picture: photo, subscribe: subscribe, votes: 0}, success: function(result){
+debugger
+            }
+          });
+    $('textarea#description').val() = "";
+  $('input#photo').val() = "";
+  $('input#email').val() = "";
+});
+});
 </script>
+</script> 
 </body>
 </html>
