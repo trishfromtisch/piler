@@ -6,31 +6,6 @@ window.onload = function(){
     $('div.sidebar').append(template);
   });
 
-//When you click a#profile, "User Profile" sidebar apppears
-  $('a#profile').click(function(){
-    $('div.sidebar').children().remove()
-    // var form = document.createElement('form'); 
-    // var input = document.createElement('input');
-    // var h3 = document.createElement('h3');
-    // var button = document.createElement('button');
-    // $(form).attr('action', 'users/:id');
-    // $(form).attr('method', 'GET')
-    // $(h3).text('Put Username');
-    // $(button).text('Edit');
-    // $(input).attr('name', 'name');
-    // $(input).attr('type', 'text');
-    // $(form).append(h3);
-    // $(form).append(input);
-    // $(form).append(button);
-    // $('div.sidebar').append(form);
-    // $('button').click(function(e){
-    //  $.ajax({url:"/users/", success: function(e){
-    //    debugger
-    //  }});
-    // });
-    var template = _.template( $("#user_profile_template").html() );
-    $('div.sidebar').append(template);
-  })
 
   $.get("/neighborhoods", function(neighborhood){
     neighborhoods = _.sortBy(neighborhood, function(neighborhoodObject) {return neighborhoodObject.name})
@@ -71,7 +46,10 @@ function RSS(neighborhood_id){
           $.get("/reports/"+reports[i].id+"/comments", function(comments){
             $(".modal-body").append("<h4>COMMENTS</h4>")
             for (var i = 0; i < comments.length; i ++){
-              $(".modal-body").append("<p>"+comments[i].content+"</p>")
+              var innards = "<div id='"+i+"'>"+comments[i].content+"</div>"
+              $.get("/users/"+comments[i].user_id, function(user){
+                $(".modal-body").append(innards + "<p>by "+user.name+"</p>")
+            })
             }
           
           })

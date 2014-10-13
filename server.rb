@@ -89,7 +89,7 @@ end
 
 put "/users/:id" do
 	content_type(:json)
-	useer = Report.find(params[:id])
+	user = User.find(params[:id])
 	user.update(user_params(params))
 	user.to_json
 end
@@ -118,6 +118,12 @@ get "/neighborhoods" do
 	content_type(:json)
 	neighborhoods = Neighborhood.all
 	neighborhoods.to_json
+end
+
+get "/neighborhoods/:id" do
+	content_type(:json)
+	neighborhood = Neighborhood.find(params["id"])
+	neighborhood.to_json
 end
 
 get "/neighborhoods/:id/reports" do
