@@ -1,60 +1,97 @@
 body{
-	text-align: center;
+text-align: center;
+font-family: 'Architects Daughter', cursive;
+text-decoration: none;
 }
- 
+
 header{
-	height:200px;
-	width:100%;
-	background:blue;
+height:200px;
+width:100%;
+background:blue;
 }
 
 ul {
-	list-style: none;
+list-style: none;
 }
- 
+
+h1 {
+font-size: 1.5em;
+margin-top: 0;
+}
+
+h2 {
+margin: 0;
+font-size: 0.5em;
+margin-bottom: -2%;
+} 
 
 a {
-	color: black;
-	font-size: 24px;
+color: black;
+font-size: 24px;
 }
- 
+
+a:hover {
+color: white;
+}
+
 div#piler{
-	font-size: 50px;
+font-size: 50px;
 }
- 
+
 div#one.row{
-	height:150px;
-	width:100%;
-	background: rgba(255,255,255,0.8);
-	margin: 0;
+height:150px;
+width:100%;
+background: rgba(255,255,255,0.8);
+margin: 0;
 }
- 
+
 div#two.row{
-	height:50px;
-	width:100%;
-	background: rgba(255,255,255,0.5);
-	margin: 0;
-	color: black;
-} 
- 
+height:50px;
+width:100%;
+background: rgba(255,255,255,0.5);
+margin: 0;
+color: black;
+}
+
+div#logo1 {
+margin-top: 2%;
+}
+
+div#logo2 {
+margin-top: 4%;
+}
+
+div.col-md-4 {
+margin-top: 0.6%;
+}
+
+div.col-md-4 a {
+text-decoration: none;
+}
+
+div.col-md-4#center {
+/* border-left: solid 1px blue;
+border-right: solid 1px blue;*/
+}
+
 .sidebar{
-	padding: 3%;
-	width: 30%;
-	height: 500px;
-	float: left;
-	background: blue;
-	color: white;
+padding: 2% 1% 0 1%;
+width: 30%;
+height: 500px;
+float: left;
+background: blue;
+color: white;
 
 }
 
 div#profile_pic {
-	height: 150px;
-	width: 150px;
-	background: black;
+height: 150px;
+width: 150px;
+background: black;
 }
 
 #wrapper{
-	padding-left: 0;
+padding-left: 0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -95,40 +132,118 @@ div#profile_pic {
 }
 
 .sidebar li {
-	margin-bottom: 5%;
+margin-bottom: 5%;
 }
 
 .sidebar button {
-	color: black;
+color: black;
 
+}
+
+div#profile_pic {
+height: 150px;
+width: 150px;
+background: black;
+}
+
+.sidebar li {
+margin-bottom: 5%;
+}
+
+.sidebar button {
+color: black;
+}
+
+.map{
+width: 70%;
+height: 500px;
+float: right;
+background: rgb(205,133,63);
+}
+
+div#option {
+margin-top: -2%;
+}
+
+button#enter {
+margin-top: 2.6%;
+margin-left: 3%;
 }
 
 .modal-body{
-	color: black;
+color: black;
 }
- 
+
 .modal-title{
-	color: black;
+color: black;
 }
 
+div.file_a_report {
+padding: 0;
+text-align: left;
+}
 
-div#profile_pic {
-	height: 150px;
-	width: 150px;
-	background: black;
+div.file_a_report h3 {
+text-align: center;
+margin-bottom: 7%;
 }
- 
-.sidebar li {
-	margin-bottom: 5%;
+
+div.file_a_report lable {
+margin: 0;
 }
- 
-.sidebar button {
-	color: black;
+
+div.file_a_report li {
+margin: 0;
 }
- 
-.map{
-	width: 70%;
-	height: 500px;
-	float: right;
-	background: rgb(205,133,63);
+
+div.file_a_report li:nth-child(1) {
+margin-bottom: -6%;
+}
+
+div.file_a_report li:nth-child(2) {
+margin-bottom: 8%;
+}
+
+div.file_a_report li:nth-child(3) {
+margin-bottom: 8%;
+}
+
+div.file_a_report li:nth-child(4) {
+margin-bottom: 8%;
+}
+
+div.file_a_report li:nth-child(5) {
+margin-bottom: 8%;
+}
+
+div.file_a_report li:nth-child(6) {
+margin-bottom: 8%;
+}
+
+div.file_a_report li:nth-child(7) {
+margin-bottom: 8%;
+}
+
+input {
+color: black;
+}
+
+textarea {
+color: black; 
+}
+
+div.form-group {
+margin-bottom: 6%;
+}
+
+div.form-group:first-child {
+margin-top: 7%;
+}
+
+div.modal-body textarea {
+width: 330px;
+}
+
+div.modal-body input#email {
+margin: 2% 2% 2% 0;
 }
