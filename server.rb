@@ -68,6 +68,15 @@ post "/comments" do
 end
 
 
+# get "/comments/:id/neighborhood" do
+# 	content_type(:json)
+# 	comment = Comment.find(params["id"])
+# 	report = Report.find(comment.report_id)
+# 	neighborhood = Neighborhood.find(report.neighborhood_id)
+# 	neighborhood.to_json
+# end
+
+
 #Users routes
 get "/users" do
 	content_type(:json)
