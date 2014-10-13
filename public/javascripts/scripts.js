@@ -16,6 +16,7 @@ window.onload = function(){
 	})
 };
 
+
 function whichNeighborhood(){
   //this is where they pick the neighborhood
   $.get("/neighborhoods", function(neighborhoods){
