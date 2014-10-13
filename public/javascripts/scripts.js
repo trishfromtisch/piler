@@ -75,4 +75,8 @@ function RSS(){
 }
 
 
+<<<<<<< HEAD
+
+=======
 >>>>>>> 67482dea93315e96a1f5fb72be3089af2f6b68a7
+>>>>>>> b05a9bd5082475dbcddeb6eef8df9215b07c6439
