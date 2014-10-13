@@ -6,8 +6,6 @@ window.onload = function(){
     $('div.sidebar').append(template);
   });
 
-whichNeighborhood()
-
 
   $.get("/neighborhoods", function(neighborhood){
     neighborhoods = _.sortBy(neighborhood, function(neighborhoodObject) {return neighborhoodObject.name})
