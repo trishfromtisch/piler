@@ -6,7 +6,7 @@ User.delete_all
 Comment.delete_all
 
 
-#Neighborhood
+
 the_bronx = Neighborhood.create({
 	name: "The Bronx",
 	google_name: "Bronx, NY"
@@ -262,7 +262,7 @@ washington_heights = Neighborhood.create({
 	google_name: "Washington Heights, NY"
 	})
 
-#User
+
 ralph = User.create( {name: "Ralph Kramden", email: "ralph@dmta.gov", subscribe: true, subscription_neighborhood_id: alphabet_city.id, password: "norton"} )
 
 frank = User.create( {name: "Frank Sinatra", email: "frankie@sinatra.com", subscribe: true, subscription_neighborhood_id: upper_east_side.id, password: "giancana"})
@@ -273,7 +273,7 @@ norm = User.create( {name: "Norman Mailer", email: "norman@hapers.com", subscrib
 
 joey = User.create( {name: "Joey Ramone", email: "joey@theramones.com", subscribe: true, subscription_neighborhood_id: queens.id, password: "beatonthebrat"})
 
-#Report
+
 poop = Report.create({user_id: ralph.id, location: "1117 Lexington Ave #4, New York, NY", neighborhood_id: upper_east_side.id, subscribe: true, votes: 15, picture: "http://www.washingtoncitypaper.com/blogs/citydesk/files/2014/02/horsepoop-1024x682.jpg", description: "Biggest dump I've ever seen. Might be human."})
 
 doodoo = Report.create({user_id: frank.id, location: "4001 Broadway, New York, NY", neighborhood_id: washington_heights.id, subscribe: false, votes: 2, picture: "http://s.hswstatic.com/gif/green-pet-poop0-1.jpg", description: "This is so nasty!"})
@@ -284,7 +284,7 @@ doody = Report.create({user_id: norm.id, location: "1889 Broadway, New York, NY 
 
 shih = Report.create({user_id: joey.id, location: "145 3rd Ave, New York, NY 10003", neighborhood_id: stuyvesant_town.id, subscribe: true, votes: 0, picture: "http://2.bp.blogspot.com/-lVtKb3jROKw/Tdkaw0MiJyI/AAAAAAAAHbo/XWaOs90oJII/s1600/poop.png", description: "Almost stepped in this!"})
 
-#Comment
+
 
 poop_comment = Comment.create({user_id: frank.id, report_id: poop.id, content: "that's horse poop, stupid"})
 
