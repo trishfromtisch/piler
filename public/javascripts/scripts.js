@@ -51,9 +51,7 @@ function RSS(neighborhood_id){
              closeButton()
  
            $.get("/reports/"+reports[i].id+"/comments", function(comments){
-             upVoting(reports[i].votes,reports[i].id)
-            downVoting(reports[i].votes, reports[i].id)
-            comment(reports[i])
+            
              for (var i = 0; i < comments.length; i ++){
               $(".comment"+comments[i].report_id).append("<p>"+comments[i].content+"</p>")
              
@@ -61,6 +59,12 @@ function RSS(neighborhood_id){
 
            
            })
+
+console.log(report[i])
+
+            upVoting(reports[i].votes,reports[i].id)
+            downVoting(reports[i].votes, reports[i].id)
+            comment(reports[i])
  
       
 
