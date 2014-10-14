@@ -54,12 +54,13 @@ function RSS(neighborhood_id){
               $(".modal-body").append("<p>"+comments[i].content+"</p>")
              
              }
-           $(".modal-body").html("")
+           
            })
  
         upVoting(reports[i].votes,reports[i].id)
         downVoting(reports[i].votes, reports[i].id)
         comment(reports[i])
+
         $("li").mouseover(makeMarkerDoSomething)
         
 
@@ -183,6 +184,7 @@ function comment(report){
 
 function closeButton(){
    $(".close").click(function(event){
+    $(".modal-body").html("")
     window.location.reload()
    
    })
