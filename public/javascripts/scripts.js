@@ -59,7 +59,8 @@ function RSS(neighborhood_id){
               $.get("/users/"+comments[i].user_id, function(user){
 
 
-                $(".modal-body").append(innards + "<p> by "+user.name+"</p>") 
+                $(".modal-body").append(innards)
+                $("#"+i).append("<p> by "+user.name+"</p>") 
         
             })
 
