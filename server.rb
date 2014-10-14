@@ -1,9 +1,7 @@
-require "sinatra"
-require "pry"
-require "rack"
-require 'rake'
-require "sinatra/activerecord"
-require "sinatra/contrib"
+require 'bundler/setup'
+Bundler.require(:default)
+
+require 'sinatra'
 
 require_relative "./db/connection.rb"
 require_relative "./lib/comment.rb"
