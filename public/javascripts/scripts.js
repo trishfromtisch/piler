@@ -47,12 +47,12 @@ function RSS(neighborhood_id){
            innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+reports[i].description+"<br>VOTES "+ reports[i].votes+" </h4></div><div class='modal-body comment"+reports[i].id+"'>"
              innards += "</div><div class='modal-footer'><button type='button' class='btn btn-primary comment'>Add Comment</button><button type='button' class='btn btn-primary up'>UP VOTE</button><button type='button' class='btn btn-primary down'>DOWN VOTE</button><button type='button' class='btn btn-default close' data-dismiss='modal'>Close</button></div></div></div></div>"
              $(".sidebar").html(innards)
-             var reportId = reports[i].id
+             
              closeButton()
  
            $.get("/reports/"+reports[i].id+"/comments", function(comments){
              for (var i = 0; i < comments.length; i ++){
-              $(".commentreportId").append("<p>"+comments[i].content+"</p>")
+              $(".comment"+reports[i].id).append("<p>"+comments[i].content+"</p>")
              
              }
            
