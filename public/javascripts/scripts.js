@@ -55,12 +55,13 @@ function RSS(neighborhood_id){
               $(".comment"+comments[i].report_id).append("<p>"+comments[i].content+"</p>")
              
              }
+          upVoting(reports[i].votes,reports[i].id)
+        downVoting(reports[i].votes, reports[i].id)
+        comment(reports[i])
            
            })
  
-        upVoting(reports[i].votes,reports[i].id)
-        downVoting(reports[i].votes, reports[i].id)
-        comment(reports[i])
+      
 
         $("li").mouseover(makeMarkerDoSomething)
         
