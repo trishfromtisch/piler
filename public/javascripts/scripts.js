@@ -47,7 +47,7 @@ function RSS(neighborhood_id){
            innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+reports[i].description+"<br>VOTES "+ reports[i].votes+" </h4></div><div class='modal-body comment"+reports[i].id+"'>"
              innards += "</div><div class='modal-footer'><button type='button' class='btn btn-primary comments"+reports[i].id+"'>Add Comment</button><button type='button' class='btn btn-primary up"+reports[i].id+"'>UP VOTE</button><button type='button' class='btn btn-primary down"+reports[i].id+"'>DOWN VOTE</button><button type='button' class='btn btn-default close' data-dismiss='modal'>Close</button></div></div></div></div>"
              $(".sidebar").html(innards)
-             console.log(reports[i].id)
+
             upVoting(reports[i].votes,reports[i].id)
             downVoting(reports[i].votes, reports[i].id)
             comment(reports[i])
@@ -82,6 +82,7 @@ function RSS(neighborhood_id){
 
 
 function upVoting(votes, id){
+  console.log(id)
 
   $(".up"+id).click(function(event){
     console.log(id)
