@@ -17,8 +17,8 @@ function newUserView (){
 	});
 	addNewUserButtonListener();
 	}
-
-
+ 
+ 
 //This function adds an event listener onto the submit new user function, which sends out an AJAX post request to add a new user 
 function addNewUserButtonListener(){
 	$("button#addUser").click(function(){
@@ -31,7 +31,7 @@ function addNewUserButtonListener(){
 		var name = nameInput.val()
 		var email = emailInput.val()
 		var password = passwordInput.val()
-
+ 
 		if (password.toLowerCase() != confirmPasswordInput.val().toLowerCase()) {
 			alert("Your passwords don't match! Please re-enter your password.")
 		
@@ -54,11 +54,11 @@ function addNewUserButtonListener(){
 			}).done(function(data){
 				profileView(data)
 				})
-
+ 
 			}
 		})
 	}
-
+ 
 function selectUserView(){
 	var $sidebar = $("div.sidebar");
 	$sidebar.empty();
@@ -66,7 +66,7 @@ function selectUserView(){
 	selectUserHtml +="<form role='form'> <div class='form-group'> <label for='queryName'>User Name</label> <input type='text' class='form-control' id='queryName' placeholder='e.g. PooperScooper123'> </div>"
 	selectUserHtml += "</form><button type='submit' id='selectUserButton' class='btn btn-default'>Submit</button>"
 	$sidebar.append(selectUserHtml)
-
+ 
 	//function below adds event listener to selectUserButton
 	$("button#selectUserButton").click(function(){
 		var queryName = $("input#queryName").val()
@@ -87,11 +87,11 @@ function selectUserView(){
 			} else {
 				alert("User does not exist.")
 			}
-
+ 
 			});
 		});
 };
-
+ 
 function profileView(user){
 	var $sidebar = $("div.sidebar");
 	console.log(user)
@@ -105,32 +105,33 @@ function profileView(user){
 		profileViewHtml += "<div class='form-group'> <label for='editPassword'>Password</label> <input type='password' class='form-control editPassword' placeholder='Enter Password to edit profile.'> </div>"
 		profileViewHtml += "<button type='button' class='btn btn-primary saveChanges'>Save changes</button> </div> </form>"
 	$sidebar.append(profileViewHtml)
-
+ 
 	$.get("/neighborhoods/" + user.subscription_neighborhood_id, function(neighborhoodInfo){
 		console.log(neighborhoodInfo)
 		$("p#userSubscriptionNeighborhood").text("Subscription Neighborhood: " + neighborhoodInfo.name )
 	})
-
+ 
 	$.get("/users/" + user.id + "/reports", function(reportsInfo) {
 		var $reportsUl = $("ul#reportsUl")
 		_.each(reportsInfo, function(report){
 			var reportsLi = "<li>" + report.created_at+"  <img src='"+report.picture+"' width='50' height ='50'></li><button class='btn btn-primary btn-xs' data-toggle='modal' data-target='#"+report.id+"'>MORE INFORMATION</button>"    	
-			reportsLi += "<div class='modal fade' id='"+report.id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+report.description+"<br>VOTES "+ report.votes+" </h4></div><div class='modal-body'>"
-			reportsLi +="</div><div class='modal-footer'><button type='button' class='btn btn-primary comment'>Add Comment</button><button type='button' class='btn btn-primary up'>UP VOTE</button><button type='button' class='btn btn-primary down'>DOWN VOTE</button><button type='button' class='btn btn-default close' data-dismiss='modal'>Close</button></div></div></div></div>"
+			reportsLi += "<div class='modal fade' id='"+report.id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+report.description+"<br>VOTES "+ report.votes+" </h4></div><div class='modal-body profile-modal'>"
+			reportsLi +="</div><div class='modal-footer'><button type='button' class='btn btn-default close' data-dismiss='modal'>Close</button></div></div></div></div>"
 			$reportsUl.append(reportsLi)
-		})
-		
+			closeButton()
+
 	})
 	addEditToggle(user);
 	addSaveChangesButton(user);
+})
 }
-
+ 
 // code below toggles edit fields
 function addEditToggle(user){
 	var editToggle = $("button#editToggle")
 	editToggle.click(function(){
 		$("form.editUser").toggle("slow")
-
+ 
 		$.get("/neighborhoods", function(neighborhoods){
 		$editNeighborhood = $("select#editSubscribeNeighborhood");
 		neighborhoods = _.sortBy(neighborhoods, function(neighborhoodObject) {return neighborhoodObject.name})
@@ -139,7 +140,7 @@ function addEditToggle(user){
 	});	
 	})
 }
-
+ 
 function addSaveChangesButton(user) {
 // code below sends put request to edit user
 	var saveChangesButton = $("button.saveChanges")
@@ -160,19 +161,19 @@ function addSaveChangesButton(user) {
 				newSubscribeAnswer = true;
 				new_subscription_neighborhood_id = $("select#editSubscribeNeighborhood").val();
 			};
-
+ 
 			if (newNameInput.val() == "") {
 				var newName = user.name
 			} else {
 				newName = newNameInput.val()
 			};
-
+ 
 			if (newEmailInput.val() == "") {
 				var newEmail = user.email
 			} else {
 				newEmail = newEmailInput.val()
 			};
-
+ 
 			console.log("clicked save changes" + newName + newEmail + newSubscribeAnswer + new_subscription_neighborhood_id) 
 			$.ajax({type: "PUT",
 				url: "/users/" + user.id, 
@@ -188,23 +189,23 @@ function addSaveChangesButton(user) {
 		}
 	})
 }
-
-
-
-
+ 
+ 
+ 
+ 
 $(function(){
-
-
+ 
+ 
 	$("a#add").click(function(event){
 		event.preventDefault;
 		newUserView();
 	})
-
+ 
 	$("a#profile").click(function(event){
 		event.preventDefault;
 		selectUserView();
 	})
-
-
-
+ 
+ 
+ 
 })

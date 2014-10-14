@@ -1,3 +1,5 @@
+
+
 window.onload = function(){
 //When you click a#file, "File a Report" sidebar apppears
   $('a#file').click(function(){
@@ -5,6 +7,9 @@ window.onload = function(){
     var template = _.template( $("#file_report_template").html() );
     $('div.sidebar').append(template);
   });
+
+
+
 
 
   $.get("/neighborhoods", function(neighborhood){
@@ -22,6 +27,7 @@ window.onload = function(){
       neighborhood_id = $("[name='neighborhood']").val()
 
       resetMap($("select option[value=" + neighborhood_id + "]").text())
+
      RSS(neighborhood_id)
      
    })
@@ -30,33 +36,40 @@ window.onload = function(){
 
 
 function RSS(neighborhood_id){
-  $.get("neighborhoods/"+ neighborhood_id + "/reports", function(report){
-    reports = _.sortBy(report, function(reportObject) {return reportObject.created_at}).reverse()
-      if (reports.length == 0){
-        alert("No reports for that area")
-      } else {
-        var innards = ""
-        for (var i = 0; i < reports.length && i < 10; i++){
-          innards += "<li>" + reports[i].created_at+"  <img src='"+reports[i].picture+"' width='50' height ='50'></li><button class='btn btn-primary btn-lg' data-toggle='modal' data-target='#"+reports[i].id+"'>MORE INFORMATION</button>"    
-          innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+reports[i].description+"<br>VOTES "+ reports[i].votes+" </h4></div><div class='modal-body'>"
-            innards += "</div><div class='modal-footer'><button type='button' class='btn btn-primary comment'>Add Comment</button><button type='button' class='btn btn-primary up'>UP VOTE</button><button type='button' class='btn btn-primary down'>DOWN VOTE</button><button type='button' class='btn btn-default close' data-dismiss='modal'>Close</button></div></div></div></div>"
-            $(".sidebar").html(innards)
-            closeButton()
+   $.get("neighborhoods/"+ neighborhood_id + "/reports", function(report){
+     reports = _.sortBy(report, function(reportObject) {return reportObject.created_at}).reverse()
+       if (reports.length == 0){
+         alert("No reports for that area")
+       } else {
+         var innards = ""
+         for (var i = 0; i < reports.length && i < 10; i++){
+           innards += "<li>" + reports[i].created_at+"  <img src='"+reports[i].picture+"' width='50' height ='50'></li><button class='btn btn-primary btn-lg' data-toggle='modal' data-target='#"+reports[i].id+"'>MORE INFORMATION</button>"    
+           innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+reports[i].description+"<br>VOTES "+ reports[i].votes+" </h4></div><div class='modal-body comment"+reports[i].id+"'>"
+             innards += "</div><div class='modal-footer'><button type='button' class='btn btn-primary comment'>Add Comment</button><button type='button' class='btn btn-primary up'>UP VOTE</button><button type='button' class='btn btn-primary down'>DOWN VOTE</button><button type='button' class='btn btn-default close' data-dismiss='modal'>Close</button></div></div></div></div>"
+             $(".sidebar").html(innards)
+             
+             closeButton()
+ 
+           $.get("/reports/"+reports[i].id+"/comments", function(comments){
+            
+             for (var i = 0; i < comments.length; i ++){
+              $(".comment"+comments[i].report_id).append("<p>"+comments[i].content+"</p>")
+             
+             }
 
-          $.get("/reports/"+reports[i].id+"/comments", function(comments){
-            $(".modal-body").append("<h4>COMMENTS</h4>")
-            for (var i = 0; i < comments.length; i ++){
-              var innards = "<div id='"+i+"'>"+comments[i].content+"</div>"
-              $.get("/users/"+comments[i].user_id, function(user){
-                $(".modal-body").append(innards + "<p>by "+user.name+"</p>")
-            })
-            }
-          
-          })
-        upVoting(reports[i].votes,reports[i].id)
-        downVoting(reports[i].votes, reports[i].id)
-        comment(reports[i])
+           
+           })
+
+
+
+            upVoting(reports[i].votes,reports[i].id)
+            downVoting(reports[i].votes, reports[i].id)
+            comment(reports[i])
+ 
+      
+
         $("li").mouseover(makeMarkerDoSomething)
+        
 
         }
     
@@ -65,8 +78,11 @@ function RSS(neighborhood_id){
 }
 
 
+
 function upVoting(votes, id){
+
   $(".up").click(function(event){
+    
     newVotes = votes + 1
     $.ajax({
       url:"/reports/"+id,
@@ -115,11 +131,13 @@ function comment(report){
             type: 'POST',
             data:{report_id: report.id, content: comment, user_id: users[i].id},
             success: function(result){
+
             alert("Comment was Successful")
             $(".close").click()
             window.location.reload()
             }
           })
+          break;
 
         } else if ( i == users.length - 1 && users[i].email.toLowerCase() != email && users[i].password.toLowerCase() != password) {
           alert("Wrong password and user combination")
@@ -176,11 +194,12 @@ function comment(report){
 function closeButton(){
    $(".close").click(function(event){
 
-
-   window.location.reload()
+    window.location.reload()
+   
    })
 
 }
+
 
   function makeMarkerDoSomething() {
     var id = $(this).siblings(".modal").attr("id")
@@ -191,6 +210,7 @@ function closeButton(){
       }
     })
   }
+
 
   populateMapMarkers()
 

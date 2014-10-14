@@ -1,11 +1,9 @@
-require "sinatra"
-require "pry"
-require "rack"
-require 'rake'
-require "sinatra/activerecord"
-require "sinatra/contrib"
+require 'bundler/setup'
+Bundler.require(:default)
 
-require_relative "./db/connection.rb"
+require 'sinatra'
+
+require_relative "./config/environments.rb"
 require_relative "./lib/comment.rb"
 require_relative "./lib/neighborhood.rb"
 require_relative "./lib/report.rb"
@@ -38,7 +36,7 @@ end
 post "/reports" do
 	content_type(:json)
 	reports = Report.create(report_params(params))
-	comment.to_json
+	reports.to_json
 end
 
 put "/reports/:id" do
@@ -66,7 +64,6 @@ post "/comments" do
 	comment = Comment.create(comment_params(params))
 	comment.to_json
 end
-
 
 #Users routes
 get "/users" do

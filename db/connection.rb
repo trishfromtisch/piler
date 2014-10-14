@@ -7,7 +7,7 @@ require_relative "../lib/user.rb"
 ActiveRecord::Base.establish_connection({
 	:adapter => "postgresql",
 	:host => "localhost",
-	:username => "Trish",
+	:username => "susrutcarpenter",
 	:database => "piler"
 	})
 

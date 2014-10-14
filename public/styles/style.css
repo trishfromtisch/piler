@@ -22,7 +22,7 @@ margin-top: 0;
 h2 {
 margin: 0;
 font-size: 0.5em;
-margin-bottom: -2%;
+margin-bottom: -1.8%;
 } 
 
 a {
@@ -52,6 +52,9 @@ background: rgba(255,255,255,0.5);
 margin: 0;
 color: black;
 }
+.red{
+  color:red;
+}
 
 div#logo1 {
 margin-top: 2%;
@@ -75,12 +78,14 @@ border-right: solid 1px blue;*/
 }
 
 .sidebar{
+display: block;
 padding: 2% 1% 0 1%;
 width: 30%;
-height: 500px;
+height: 600px;
 float: left;
 background: blue;
 color: white;
+overflow-y: scroll;
 
 }
 
@@ -90,46 +95,6 @@ width: 150px;
 background: black;
 }
 
-#wrapper{
-padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled {
-    padding-left: 250px;
-}
-
-#sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-}
-
-#page-content-wrapper {
-    width: 100%;
-    padding: 15px;
-}
-
-#wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -250px;
-}
 
 .sidebar li {
 margin-bottom: 5%;
@@ -156,7 +121,7 @@ color: black;
 
 .map{
 width: 70%;
-height: 500px;
+height: 600px;
 float: right;
 background: rgb(205,133,63);
 }
