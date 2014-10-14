@@ -8,12 +8,9 @@ window.onload = function(){
     $('div.sidebar').append(template);
   });
 
-  $('a#profile').click(function(){
-    $('div.sidebar').children().remove()
-  
-    var template = _.template( $("#user_profile_template").html() );
-    $('div.sidebar').append(template);
-  })
+
+
+
 
   $.get("/neighborhoods", function(neighborhood){
     neighborhoods = _.sortBy(neighborhood, function(neighborhoodObject) {return neighborhoodObject.name})
@@ -30,6 +27,7 @@ window.onload = function(){
       neighborhood_id = $("[name='neighborhood']").val()
 
       resetMap($("select option[value=" + neighborhood_id + "]").text())
+
      RSS(neighborhood_id)
      
    })
@@ -38,6 +36,7 @@ window.onload = function(){
 
 
 function RSS(neighborhood_id){
+
   $.get("neighborhoods/"+ neighborhood_id + "/reports", function(report){
     reports = _.sortBy(report, function(reportObject) {return reportObject.created_at}).reverse()
       if (reports.length == 0){
@@ -51,21 +50,28 @@ function RSS(neighborhood_id){
             $(".sidebar").html(innards)
             closeButton()
 
+
           $.get("/reports/"+reports[i].id+"/comments", function(comments){
-            $(".modal-body").append("<h4>COMMENTS</h4>")
+            
             for (var i = 0; i < comments.length; i ++){
               var innards = "<div id='"+i+"'>"+comments[i].content+"</div>"
               $.get("/users/"+comments[i].user_id, function(user){
-                $(".modal-body").append(innards + "<p>by "+user.name+"</p>") 
+
+
+                $(".modal-body").append(innards + "<p> by "+user.name+"</p>") 
         
-               })
+            })
+
             }
           
+
           })
+
         upVoting(reports[i].votes,reports[i].id)
         downVoting(reports[i].votes, reports[i].id)
         comment(reports[i])
         $("li").mouseover(makeMarkerDoSomething)
+        $(".modal-body").html("")
 
         }
     

@@ -6,6 +6,7 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
 <script src="javascripts/scripts.js"></script>
+ <script src="javascripts/navscript.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -29,9 +30,8 @@
 <div class="sidebar"></div>
 <div class="map"></div>
 
-<script>
 
-// </script>
+
 <script id="file_report_template" type="text/template">
 <div class="file_a_report">
 <h3>File a Report</h3>
@@ -126,9 +126,10 @@ var location = $('input#location').val();
   $.ajax({url:"/reports", type: 'POST', data:{location: location, neighborhood_id: neighborhood_id, description: description, picture: photo, subscribe: subscribe, user_id: user_id, votes: 0}, success: function(result){
           }});
   }});
-  $('textarea#description').val() = "";
-  $('input#photo').val() = "";
-  $('email_input#email').val() = "";
+  $('textarea#description').val("");
+  $('input#location').val("");
+  $('input#photo').val("");
+  $('email_input#email').val("");
   } else if ( i == users.length - 1 && users[i].email.toLowerCase() != email && users[i].password.toLowerCase() != password) {
           alert("Wrong password and user combination")
         }
@@ -152,12 +153,12 @@ var neighborhood_id = $("[name='neighborhood_reports']").val();
   var subscribe = false;
   };
 $.ajax({url:"/reports",type: 'POST', data:{location: location, neighborhood_id: neighborhood_id, description: description, picture: photo, subscribe: subscribe, votes: 0}, success: function(result){
-debugger
             }
           });
-    $('textarea#description').val() = "";
-  $('input#photo').val() = "";
-  $('input#email').val() = "";
+  $('textarea#description').val("");
+  $('input#location').val("");
+  $('input#photo').val("");
+  $('input#email').val("");
 });
 });
 </script>
