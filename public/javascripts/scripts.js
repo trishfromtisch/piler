@@ -137,6 +137,7 @@ function comment(report){
             window.location.reload()
             }
           })
+          break;
 
         } else if ( i == users.length - 1 && users[i].email.toLowerCase() != email && users[i].password.toLowerCase() != password) {
           alert("Wrong password and user combination")
