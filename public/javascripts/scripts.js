@@ -118,7 +118,7 @@ function downVoting(votes, id){
 
 
 function comment(report){
-  $(".comments"+id).click(function(event){
+  $(".comments"+report.id).click(function(event){
     $(".modal-body").html("<textarea name='comment' rows = 5 cols= 10 placeholder='Comment'></textarea><br><input name='email' placeholder='email' id='email'><input name='password' placeholder='password'><br><button class='commentEnter'>ENTER</button>")
     $(".commentEnter").click(function(event){
     email = $("[name='email']").val().toLowerCase()
