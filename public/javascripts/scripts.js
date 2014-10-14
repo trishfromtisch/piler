@@ -45,7 +45,7 @@ function RSS(neighborhood_id){
         var innards = ""
         for (var i = 0; i < reports.length && i < 10; i++){
           innards += "<li>" + reports[i].created_at+"  <img src='"+reports[i].picture+"' width='50' height ='50'></li><button class='btn btn-primary btn-lg' data-toggle='modal' data-target='#"+reports[i].id+"'>MORE INFORMATION</button>"    
-          innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+reports[i].description+"<br>VOTES "+ reports[i].votes+" </h4></div><div class='modal-body comment"+reports[i].id+"'>"
+          innards += "<div class='modal fade' id='"+reports[i].id+"' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>"+reports[i].description+"<br>VOTES "+ reports[i].votes+" </h4></div><div class='modal-body'>"
             innards += "</div><div class='modal-footer'><button type='button' class='btn btn-primary comment'>Add Comment</button><button type='button' class='btn btn-primary up'>UP VOTE</button><button type='button' class='btn btn-primary down'>DOWN VOTE</button><button type='button' class='btn btn-default close' data-dismiss='modal'>Close</button></div></div></div></div>"
             $(".sidebar").html(innards)
             closeButton()
@@ -58,7 +58,7 @@ function RSS(neighborhood_id){
               $.get("/users/"+comments[i].user_id, function(user){
 
 
-                $(".comment"+reports[i].id).append(innards + "<p> by "+user.name+"</p>") 
+                $(".modal-body").append(innards + "<p> by "+user.name+"</p>") 
         
             })
 
