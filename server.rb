@@ -3,7 +3,7 @@ Bundler.require(:default)
 
 require 'sinatra'
 
-require_relative "./db/config/environments.rb"
+require_relative "./config/environments.rb"
 require_relative "./lib/comment.rb"
 require_relative "./lib/neighborhood.rb"
 require_relative "./lib/report.rb"
