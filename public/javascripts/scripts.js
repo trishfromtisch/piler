@@ -50,7 +50,7 @@ function RSS(neighborhood_id){
              closeButton()
  
            $.get("/reports/"+reports[i].id+"/comments", function(comments){
-             $(".modal-body").append("<h4>COMMENTS</h4>")
+             
              for (var i = 0; i < comments.length; i ++){
               $(".modal-body").append("<p>"+comments[i].content+"</p>")
              
