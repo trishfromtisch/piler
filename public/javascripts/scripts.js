@@ -54,7 +54,7 @@ function RSS(neighborhood_id){
              for (var i = 0; i < comments.length; i ++){
               $(".comment"+comments[i].report_id).append("<p id=user'"+comments[i].user_id+"'>"+comments[i].content+"</p>")
               $.get("/users/"+comments[i].user_id, function(user){
-                $("#user"+id).append("<p>"+user.name+"</p>")
+                $("#user"+user.id).append("<p>"+user.name+"</p>")
               })
              
              }
