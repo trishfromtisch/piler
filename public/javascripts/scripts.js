@@ -53,11 +53,7 @@ function RSS(neighborhood_id){
              $(".modal-body").append("<h4>COMMENTS</h4>")
              for (var i = 0; i < comments.length; i ++){
               $(".modal-body").append("<p>"+comments[i].content+"</p>")
-              var innards = "<div id='"+i+"'>"+comments[i].content+"</div>"
-              $.get("/users/"+comments[i].user_id, function(user){
-                $(".modal-body").append(innards + "<p>by "+user.name+"</p>") 
-        
-              })
+             
              }
            
            })
