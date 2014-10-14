@@ -54,7 +54,7 @@ function RSS(neighborhood_id){
           $.get("/reports/"+reports[i].id+"/comments", function(comments){
             
             for (var i = 0; i < comments.length; i ++){
-              var innards = "<div id='"+i+"'>"+comments[i].content+"</div>"
+              var innards += "<div id='"+i+"'>"+comments[i].content+"</div>"
               $.get("/users/"+comments[i].user_id, function(user){
 
 
