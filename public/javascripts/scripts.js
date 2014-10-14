@@ -80,7 +80,9 @@ console.log(report[i])
 
 
 function upVoting(votes, id){
+
   $(".up").click(function(event){
+    console.log(id)
     newVotes = votes + 1
     $.ajax({
       url:"/reports/"+id,
