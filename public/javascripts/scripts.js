@@ -52,13 +52,15 @@ function RSS(neighborhood_id){
 
 
           $.get("/reports/"+reports[i].id+"/comments", function(comments){
-
-            if (comments != 0){
-           
+            var innards = ""
             
             for (var i = 0; i < comments.length; i ++){
-               innards = "<div id='"+i+"'>"+comments[i].content+"</div>"
-               $(".modal-body").append(innards)
+               innards += "<div id='"+i+"'>"+comments[i].content+"</div>"
+
+                $(".modal-body").append(innards)
+
+        
+            })
 
             }
           
@@ -69,7 +71,7 @@ function RSS(neighborhood_id){
         downVoting(reports[i].votes, reports[i].id)
         comment(reports[i])
         $("li").mouseover(makeMarkerDoSomething)
-        }
+        $(".modal-body").html("")
 
         }
     
