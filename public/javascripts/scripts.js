@@ -52,6 +52,8 @@ function RSS(neighborhood_id){
 
 
           $.get("/reports/"+reports[i].id+"/comments", function(comments){
+
+            if (comments != 0){
            
             
             for (var i = 0; i < comments.length; i ++){
@@ -67,7 +69,7 @@ function RSS(neighborhood_id){
         downVoting(reports[i].votes, reports[i].id)
         comment(reports[i])
         $("li").mouseover(makeMarkerDoSomething)
-        
+        }
 
         }
     
