@@ -52,14 +52,15 @@ function RSS(neighborhood_id){
 
 
           $.get("/reports/"+reports[i].id+"/comments", function(comments){
-            var innards = ""
+           
             
             for (var i = 0; i < comments.length; i ++){
-               innards += "<div id='"+i+"'>"+comments[i].content+"</div>"
+               innards = "<div id='"+i+"'>"+comments[i].content+"</div>"
+               $(".modal-body").append(innards)
               $.get("/users/"+comments[i].user_id, function(user){
 
 
-                $(".modal-body").append(innards)
+                
                 $("#"+i).append("<p> by "+user.name+"</p>") 
         
             })
