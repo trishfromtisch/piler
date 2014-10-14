@@ -57,13 +57,6 @@ function RSS(neighborhood_id){
             for (var i = 0; i < comments.length; i ++){
                innards = "<div id='"+i+"'>"+comments[i].content+"</div>"
                $(".modal-body").append(innards)
-              $.get("/users/"+comments[i].user_id, function(user){
-
-
-                
-                $("#"+i).append("<p> by "+user.name+"</p>") 
-        
-            })
 
             }
           
@@ -74,7 +67,7 @@ function RSS(neighborhood_id){
         downVoting(reports[i].votes, reports[i].id)
         comment(reports[i])
         $("li").mouseover(makeMarkerDoSomething)
-        $(".modal-body").html("")
+        
 
         }
     
