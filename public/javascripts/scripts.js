@@ -52,7 +52,7 @@ function RSS(neighborhood_id){
  
            $.get("/reports/"+reports[i].id+"/comments", function(comments){
              for (var i = 0; i < comments.length; i ++){
-              $(".comment"+reports[i].id).append("<p>"+comments[i].content+"</p>")
+              $(".comment"+comments[i).report_id).append("<p>"+comments[i].content+"</p>")
              
              }
            
